@@ -3,382 +3,312 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>D2R 3.3 Herald 全地圖刷法總策略</title>
+<title>《暗黑破壞神 II：獄火重生》3.3 恐懼使者全地圖刷法總策略</title>
 <style>
-  :root{
-    --bg:#0d0d0f;
-    --panel:#16171b;
-    --panel2:#1d1f24;
-    --text:#ece7dc;
-    --muted:#aaa49a;
-    --line:#35363d;
-    --gold:#d8b15f;
-    --red:#b8493d;
-    --green:#68a678;
-    --blue:#6f93bf;
-    --orange:#cf8a46;
-    --purple:#9c78c5;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  :root{--bg:#0d0d0f;--panel:#16171b;--panel2:#1d1f24;--text:#ece7dc;--muted:#aaa49a;--line:#35363d;--gold:#d8b15f}
+  *{box-sizing:border-box} html{scroll-behavior:smooth}
   body{margin:0;background:radial-gradient(circle at top,#1a1714 0,#0d0d0f 42rem);color:var(--text);font-family:"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.65}
-  a{color:var(--gold);text-decoration:none}
-  .wrap{max-width:1320px;margin:auto;padding:24px}
+  a{color:var(--gold);text-decoration:none}.wrap{max-width:1320px;margin:auto;padding:24px}
   header{padding:28px 0 14px;border-bottom:1px solid var(--line)}
   h1{font-size:clamp(28px,4vw,46px);margin:0 0 8px;color:#f3dfad;letter-spacing:.03em}
   h2{margin-top:38px;color:#ead39b;border-left:5px solid var(--gold);padding-left:12px}
-  h3{color:#e6c985;margin-top:28px}
-  p{margin:.7em 0}
-  .subtitle{color:var(--muted);font-size:1.05rem}
+  h3{color:#e6c985;margin-top:28px} p{margin:.7em 0}.subtitle{color:var(--muted);font-size:1.05rem}
   .notice{margin:18px 0;padding:14px 16px;border:1px solid #6a5124;background:#241d11;border-radius:10px;color:#e8d8b1}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0}
   .card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:0 10px 26px #0005}
-  .card strong{color:#f2d99d}
-  .flow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:15px 0}
-  .step{padding:9px 12px;border-radius:999px;background:#22252b;border:1px solid #41434a}
-  .arrow{color:var(--gold);font-weight:800}
+  .card strong{color:#f2d99d}.flow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:15px 0}
+  .step{padding:9px 12px;border-radius:999px;background:#22252b;border:1px solid #41434a}.arrow{color:var(--gold);font-weight:800}
   nav{position:sticky;top:0;z-index:10;background:#0d0d0fe8;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
   nav .navinner{max-width:1320px;margin:auto;padding:10px 24px;display:flex;gap:10px;overflow:auto;white-space:nowrap}
   nav a{padding:7px 10px;border-radius:8px;background:#1b1c20;border:1px solid #303138;font-size:.92rem}
-  nav a:hover{background:#272930}
   table{width:100%;border-collapse:collapse;margin:14px 0 22px;background:#141519;border:1px solid var(--line);border-radius:10px;overflow:hidden}
-  th,td{padding:10px 11px;border-bottom:1px solid #303138;vertical-align:top}
-  th{background:#202229;color:#f0d79c;text-align:left;position:sticky;top:48px;z-index:2}
-  tr:hover td{background:#1b1d22}
-  .chip{display:inline-block;padding:3px 8px;border-radius:999px;font-size:.78rem;font-weight:700;border:1px solid transparent;white-space:nowrap}
-  .s{background:#40291b;border-color:#9d6434;color:#ffd7a6}
-  .a{background:#203424;border-color:#4f825b;color:#bfe5c8}
-  .b{background:#243243;border-color:#4f6f91;color:#c9ddf3}
-  .c{background:#30283b;border-color:#725b8a;color:#dbc8f1}
-  .pass{background:#332325;border-color:#87464c;color:#f0c0c5}
-  .low{color:#cdbb99}
-  .key{color:#f4d583;font-weight:700}
-  .grouprow td{background:#252117!important;color:#efd798;font-weight:800;border-top:2px solid #554522}
-  .extra td{background:#211c20!important;color:#d5c0d8;font-weight:700}
-  .subtle{color:#aaa49a;font-size:.88rem}
-  .mono{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;color:#e2c999}
-  .route{padding:13px 15px;border-left:4px solid var(--gold);background:#1b1812;border-radius:8px;margin:12px 0}
-  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .legend{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px}
-  details{background:#15161a;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:12px 0}
-  summary{cursor:pointer;color:#efd798;font-weight:700}
+  th,td{padding:10px 11px;border-bottom:1px solid #303138;vertical-align:top} th{background:#202229;color:#f0d79c;text-align:left;position:sticky;top:48px;z-index:2}
+  tr:hover td{background:#1b1d22}.chip{display:inline-block;padding:3px 8px;border-radius:999px;font-size:.78rem;font-weight:700;border:1px solid transparent;white-space:nowrap}
+  .s{background:#40291b;border-color:#9d6434;color:#ffd7a6}.a{background:#203424;border-color:#4f825b;color:#bfe5c8}.b{background:#243243;border-color:#4f6f91;color:#c9ddf3}.c{background:#30283b;border-color:#725b8a;color:#dbc8f1}.pass{background:#332325;border-color:#87464c;color:#f0c0c5}
+  .mono{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;color:#e2c999}.route{padding:13px 15px;border-left:4px solid var(--gold);background:#1b1812;border-radius:8px;margin:12px 0}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.legend{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px}
+  .grouprow td{background:#252117!important;color:#efd798;font-weight:800;border-top:2px solid #554522}.extra td{background:#211c20!important;color:#d5c0d8;font-weight:700}.subtle{color:#aaa49a;font-size:.88rem}
+  details{background:#15161a;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:12px 0}summary{cursor:pointer;color:#efd798;font-weight:700}
   footer{margin-top:40px;padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem}
-  @media(max-width:760px){
-    .wrap{padding:16px}.two{grid-template-columns:1fr}th{position:static}table{font-size:.92rem}.hide-mobile{display:none}
-  }
-  @media print{
-    body{background:#fff;color:#111}.wrap{max-width:none}.card,table,details{box-shadow:none;background:#fff;color:#111}nav{display:none}th{position:static;background:#eee;color:#111}a{color:#111}.chip{color:#111}
-  }
+  @media(max-width:760px){.wrap{padding:16px}.two{grid-template-columns:1fr}th{position:static}table{font-size:.92rem}}
 </style>
 </head>
 <body>
-<nav>
-  <div class="navinner">
-    <a href="#core">總策略</a><a href="#ascend">T1–T4 升階</a><a href="#t5">T5 收割</a>
-    <a href="#a1">Act 1</a><a href="#a2">Act 2</a><a href="#a3">Act 3</a><a href="#a4">Act 4</a><a href="#a5">Act 5</a><a href="#master">全圖總路線</a>
-  </div>
-</nav>
+<nav><div class="navinner">
+<a href="#core">總策略</a><a href="#ascend">T1–T4 升階</a><a href="#t5">T5 收割</a>
+<a href="#a1">第一章</a><a href="#a2">第二章</a><a href="#a3">第三章</a><a href="#a4">第四章</a><a href="#a5">第五章</a><a href="#master">全圖總路線</a>
+</div></nav>
+
 <div class="wrap">
 <header>
-  <h1>D2R 3.3 Herald 全地圖刷法總策略</h1>
-  <div class="subtitle">五個 Act Worldstone Shard 全開｜以 Herald 數量／時間最大化為目標</div>
+  <h1>《暗黑破壞神 II：獄火重生》3.3 恐懼使者全地圖刷法總策略</h1>
+  <div class="subtitle">五個章節的世界之石碎片全開｜以恐懼使者數量／時間最大化為目標</div>
 </header>
 
 <section id="core">
-  <h2>一、核心規則</h2>
-  <div class="grid">
-    <div class="card"><strong>T1～T4：升階期</strong><br>每個 <span class="mono">zone_data_id</span> 的任務只有一件事：生出一隻 Herald。<br><span class="key">一出生就換區。</span></div>
-    <div class="card"><strong>T5：收割期</strong><br>不再遵守「一隻就走」。改成榨取該 zone 的剩餘怪量與 Herald 產能。</div>
-    <div class="card"><strong>X 是區域局部值</strong><br>只有相同 <span class="mono">zone_data_id</span> 的地圖共享 X。不同 zone 彼此不累積。</div>
-    <div class="card"><strong>Herald Tier 是全局值</strong><br>同一場遊戲中，T1 → T2 → T3 → T4 → T5 持續往上，不因換 Act 而重置。</div>
-  </div>
-  <div class="notice"><b>一句話：</b>低階省圖，高階榨圖。T1～T4 用低機會成本 zone 付升階成本；進 T5 後再把 WSK、Cow、Tal Tombs、Flayer Jungle 等高價值區域完整榨乾。</div>
+<h2>一、核心規則</h2>
+<div class="grid">
+  <div class="card"><strong>T1～T4：升階期</strong><br>每個 <span class="mono">zone_data_id</span> 的任務只有一件事：生出一隻恐懼使者。<br><b>一出生就換區。</b></div>
+  <div class="card"><strong>T5：收割期</strong><br>不再遵守「一隻就走」。改成榨取該區域的剩餘怪量與恐懼使者產能。</div>
+  <div class="card"><strong>區域完成度 X 是局部值</strong><br>只有相同 <span class="mono">zone_data_id</span> 的地圖共享 X；不同區域彼此不累積。</div>
+  <div class="card"><strong>恐懼使者階級是全局值</strong><br>同一場遊戲中，T1 → T2 → T3 → T4 → T5 持續往上，不因切換章節而重置。</div>
+</div>
+<div class="notice"><b>一句話：</b>低階省圖，高階榨圖。T1～T4 用低機會成本區域支付升階成本；進 T5 後，再把世界之石要塞、秘密乳牛關、塔拉夏的古墓、剝皮叢林等高價值區域完整榨乾。</div>
 </section>
 
 <section id="ascend">
-  <h2>二、T1～T4 升階期：統一演算法</h2>
-  <div class="flow">
-    <span class="step">選低／中價值 zone</span><span class="arrow">→</span>
-    <span class="step">一路殺，不先繞圖</span><span class="arrow">→</span>
-    <span class="step">沒 Herald 就繼續</span><span class="arrow">→</span>
-    <span class="step">Herald 出現</span><span class="arrow">→</span>
-    <span class="step">立刻換新的 zone_data_id</span>
-  </div>
-  <p>如果一個 zone 完整清光仍沒 Herald，代表這個 zone 的「骰判資源」已經耗盡；直接換下一個 zone，不需要另切換成所謂乾旱模式。真正要做的是按<strong>機會成本由低到高</strong>消耗 zone。</p>
-
-  <h3>建議升階起始路線</h3>
-  <div class="route"><b>Spider Cavern → Arachnid Lair → Outer Steppes → Plains of Despair → City of the Damned → River of Flame → Den of Evil → Stony Tomb</b><br><span class="low">只跑到 T5 為止；每出一隻就立刻跳下一個 zone。剩餘未用區域全部保留給 T5。</span></div>
+<h2>二、T1～T4 升階期：統一演算法</h2>
+<div class="flow">
+<span class="step">選低／中價值區域</span><span class="arrow">→</span>
+<span class="step">一路殺，不先繞圖</span><span class="arrow">→</span>
+<span class="step">沒出恐懼使者就繼續</span><span class="arrow">→</span>
+<span class="step">恐懼使者出現</span><span class="arrow">→</span>
+<span class="step">立刻換新的 <span class="mono">zone_data_id</span></span>
+</div>
+<p>如果一個區域完整清光仍沒出恐懼使者，代表該區域可供觸發的怪物已經耗盡；直接換下一個區域，不需要另外切換成所謂「乾旱模式」。真正要做的是按機會成本由低到高消耗區域。</p>
+<h3>建議升階起始路線</h3>
+<div class="route"><b>蜘蛛洞窟 → 蜘蛛巢穴 → 外圍荒原 → 絕望平原 → 罪罰之城 → 火焰之河 → 邪惡洞窟 → 古老石墓</b><br><span class="subtle">只跑到 T5 為止；每出一隻就立刻跳下一個區域。剩餘未用區域全部保留給 T5。</span></div>
 </section>
 
 <section id="t5">
-  <h2>三、T5 收割期：策略反轉</h2>
-  <p>一進 T5，開始優先刷 Herald/hour 最高的剩餘 zone。Herald 出現後，X 會歸零，但如果該 zone 還剩大量集中怪物，就重新累積 X，繼續追下一隻 T5。</p>
-  <div class="two">
-    <div class="card"><strong>繼續刷</strong><br>Herald 出得早、地圖仍剩約 50% 以上集中怪、後續路線順。</div>
-    <div class="card"><strong>換區</strong><br>只剩 20～30% 零散怪、需要回頭找、下一個完整高價值 zone 更快。</div>
-  </div>
-  <h3>T5 第一梯隊</h3>
-  <div class="route">WSK/Throne → Cow → Bloody Foothills → Flayer Jungle → Arcane Sanctuary → Nihlathak Temple/Halls of Anguish → Halls of Pain → Durance → 七座 Tal Rasha Tombs → Frozen Tundra → Cathedral/Catacombs → Halls of the Dead</div>
+<h2>三、T5 收割期：策略反轉</h2>
+<p>一進 T5，開始優先刷「每小時恐懼使者數」最高的剩餘區域。恐懼使者出現後，X 會歸零，但如果該區域還剩大量集中怪物，就重新累積 X，繼續追下一隻 T5。</p>
+<div class="two">
+  <div class="card"><strong>繼續刷</strong><br>恐懼使者出得早、地圖仍剩約 50% 以上集中怪、後續路線順。</div>
+  <div class="card"><strong>換區</strong><br>只剩 20～30% 零散怪、需要回頭找，而下一個完整高價值區域更快。</div>
+</div>
+<h3>T5 第一梯隊</h3>
+<div class="route">世界之石要塞／毀滅王座 → 秘密乳牛關 → 血腥丘陵 → 剝皮叢林 → 秘法聖殿 → 尼拉塞克的神殿／怨慟之廳 → 苦痛之廳 → 憎恨囚牢 → 七座塔拉夏的古墓 → 冰凍苔原 → 大教堂／地下墓穴 → 死亡之殿</div>
 </section>
 
 <div class="legend">
-  <span class="chip s">S：T5 高價值／深清</span>
-  <span class="chip a">A：高優先</span>
-  <span class="chip b">B：正常</span>
-  <span class="chip c">C：低優先／升階可犧牲</span>
-  <span class="chip pass">路過：不拿來累積 X</span>
+<span class="chip s">S：T5 高價值／深清</span><span class="chip a">A：高優先</span><span class="chip b">B：正常</span><span class="chip c">C：低優先／升階可犧牲</span><span class="chip pass">路過：不拿來累積 X</span>
 </div>
 
 <section id="a1">
-  <h2>四、Act 1 全地圖策略</h2>
-  <p class="subtle">排序依 Blizzard《Reign of the Warlock》3.3 公布的 Terror Zone Rotation Groups；官方輪替未列出但在「全 Act Terrorized」與 Herald 資料中存在的 Level，以「Shard 全章補圖」標示。策略評級不再改變官方順序。</p>
-  <table>
-    <thead><tr><th>官方 3.3 組別／地圖</th><th>Herald zone / Weight</th><th>策略</th><th>評級</th></tr></thead>
-    <tbody>
-      <tr class="extra"><td colspan="4">Shard 全章補圖｜不在目前排程輪替清單</td></tr>
-      <tr><td>Blood Moor</td><td><span class="mono">Act1-BloodMoor</span> / 1</td><td>獨立 X；低階可用。</td><td><span class="chip b">B-</span></td></tr>
-      <tr><td>Den of Evil</td><td><span class="mono">Act1-BloodMoor-Cave</span> / 1</td><td>獨立 X；升階犧牲區。</td><td><span class="chip c">C</span></td></tr>
+<h2>四、第一章全地圖策略</h2>
+<p class="subtle">排序依暴雪《術士軍臨》3.3 公布的邪惡威脅區域輪替組別；官方輪替未列出，但在世界之石碎片全章邪惡威脅化與恐懼使者資料中存在的地圖，以「世界之石碎片全章補圖」標示。</p>
+<table><thead><tr><th>官方 3.3 組別／地圖</th><th>恐懼使者區域／權重</th><th>策略</th><th>評級</th></tr></thead><tbody>
+<tr class="extra"><td colspan="4">世界之石碎片全章補圖｜不在目前排程輪替清單</td></tr>
+<tr><td>鮮血荒地</td><td><span class="mono">Act1-BloodMoor</span> / 1</td><td>獨立 X；低階可用。</td><td><span class="chip b">B-</span></td></tr>
+<tr><td>邪惡洞窟</td><td><span class="mono">Act1-BloodMoor-Cave</span> / 1</td><td>獨立 X；升階犧牲區。</td><td><span class="chip c">C</span></td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #1｜Cold Plains and The Cave</td></tr>
-      <tr><td>Cold Plains</td><td><span class="mono">Act1-ColdPlains</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Cave Level 1</td><td rowspan="2"><span class="mono">Act1-ColdPlains-Cave</span><br>3 : 1，共用 X</td><td>主權重層。</td><td rowspan="2"><span class="chip b">B</span></td></tr>
-      <tr><td>Cave Level 2</td><td>接續補完。</td></tr>
+<tr class="grouprow"><td colspan="4">官方 #1｜冰冷之原和洞穴</td></tr>
+<tr><td>冰冷之原</td><td><span class="mono">Act1-ColdPlains</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr><td>洞穴第一層</td><td rowspan="2"><span class="mono">Act1-ColdPlains-Cave</span><br>3 : 1，共用 X</td><td>主權重層。</td><td rowspan="2"><span class="chip b">B</span></td></tr>
+<tr><td>洞穴第二層</td><td>接續補完。</td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #2｜Burial Grounds, The Crypt, and the Mausoleum</td></tr>
-      <tr><td>Burial Grounds</td><td rowspan="3"><span class="mono">Act1-BurialGrounds</span><br>1 : 1 : 1，共用 X</td><td rowspan="3">三區視為同一 Herald zone。</td><td rowspan="3"><span class="chip b">B</span></td></tr>
-      <tr><td>Crypt</td></tr><tr><td>Mausoleum</td></tr>
+<tr class="grouprow"><td colspan="4">官方 #2｜埋骨之地、墓地和大陵墓</td></tr>
+<tr><td>埋骨之地</td><td rowspan="3"><span class="mono">Act1-BurialGrounds</span><br>1 : 1 : 1，共用 X</td><td rowspan="3">三區視為同一個恐懼使者區域。</td><td rowspan="3"><span class="chip b">B</span></td></tr>
+<tr><td>墓地</td></tr><tr><td>大陵墓</td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #3｜Stony Field / Tristram</td></tr>
-      <tr><td>Stony Field</td><td rowspan="2"><span class="mono">Act1-Tristram</span><br>3 : 1，共用 X</td><td>主權重區。</td><td rowspan="2"><span class="chip a">A-</span></td></tr>
-      <tr><td>Tristram</td><td>接續補完。</td></tr>
+<tr class="grouprow"><td colspan="4">官方 #3｜亂石曠野 / 崔斯特姆</td></tr>
+<tr><td>亂石曠野</td><td rowspan="2"><span class="mono">Act1-Tristram</span><br>3 : 1，共用 X</td><td>主權重區。</td><td rowspan="2"><span class="chip a">A-</span></td></tr>
+<tr><td>崔斯特姆</td><td>接續補完。</td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #4｜Dark Wood / Underground Passage</td></tr>
-      <tr><td>Dark Wood</td><td><span class="mono">Act1-DarkWood</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Underground Passage Level 1</td><td rowspan="2"><span class="mono">Act1-DarkWood-Cave</span><br>3 : 1，共用 X</td><td>主權重層。</td><td rowspan="2"><span class="chip b">B</span></td></tr>
-      <tr><td>Underground Passage Level 2</td><td>接續補完。</td></tr>
+<tr class="grouprow"><td colspan="4">官方 #4｜黑暗森林 / 地底通道</td></tr>
+<tr><td>黑暗森林</td><td><span class="mono">Act1-DarkWood</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr><td>地底通道第一層</td><td rowspan="2"><span class="mono">Act1-DarkWood-Cave</span><br>3 : 1，共用 X</td><td>主權重層。</td><td rowspan="2"><span class="chip b">B</span></td></tr>
+<tr><td>地底通道第二層</td><td>接續補完。</td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #5｜Black Marsh / The Hole / The Forgotten Tower</td></tr>
-      <tr><td>Black Marsh</td><td><span class="mono">Act1-Tower-Wilderness</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Hole Level 1</td><td rowspan="2"><span class="mono">Act1-Tower-Cave</span><br>3 : 1，共用 X</td><td>主權重層。</td><td rowspan="2"><span class="chip b">B</span></td></tr>
-      <tr><td>Hole Level 2</td><td>接續補完。</td></tr>
-      <tr><td>Forgotten Tower（入口 Level）</td><td>無 Herald completion 欄位</td><td>通行層，本身不累積 X。</td><td><span class="chip pass">路過</span></td></tr>
-      <tr><td>Tower Cellar Level 1</td><td rowspan="5"><span class="mono">Act1-Tower</span><br>2 : 2 : 2 : 2 : 1，共用 X</td><td rowspan="5">五層一路到底。</td><td rowspan="5"><span class="chip a">A-</span></td></tr>
-      <tr><td>Tower Cellar Level 2</td></tr><tr><td>Tower Cellar Level 3</td></tr><tr><td>Tower Cellar Level 4</td></tr><tr><td>Tower Cellar Level 5</td></tr>
+<tr class="grouprow"><td colspan="4">官方 #5｜黑色荒地 / 地洞 / 遺忘之塔</td></tr>
+<tr><td>黑色荒地</td><td><span class="mono">Act1-Tower-Wilderness</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr><td>地洞第一層</td><td rowspan="2"><span class="mono">Act1-Tower-Cave</span><br>3 : 1，共用 X</td><td>主權重層。</td><td rowspan="2"><span class="chip b">B</span></td></tr>
+<tr><td>地洞第二層</td><td>接續補完。</td></tr>
+<tr><td>遺忘之塔（入口層）</td><td>無恐懼使者完成度欄位</td><td>通行層，本身不累積 X。</td><td><span class="chip pass">路過</span></td></tr>
+<tr><td>高塔地牢第一層</td><td rowspan="5"><span class="mono">Act1-Tower</span><br>2 : 2 : 2 : 2 : 1，共用 X</td><td rowspan="5">五層一路到底。</td><td rowspan="5"><span class="chip a">A-</span></td></tr>
+<tr><td>高塔地牢第二層</td></tr><tr><td>高塔地牢第三層</td></tr><tr><td>高塔地牢第四層</td></tr><tr><td>高塔地牢第五層</td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #6｜Jail / Barracks</td></tr>
-      <tr><td>Jail Level 1</td><td rowspan="3"><span class="mono">Act1-Jail</span><br>1 : 1 : 1，共用 X</td><td rowspan="3">三層視為一張大圖。</td><td rowspan="3"><span class="chip a">A-</span></td></tr>
-      <tr><td>Jail Level 2</td></tr><tr><td>Jail Level 3</td></tr>
-      <tr><td>Barracks</td><td><span class="mono">Act1-Barracks</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr class="grouprow"><td colspan="4">官方 #6｜監牢 / 兵營</td></tr>
+<tr><td>監牢第一層</td><td rowspan="3"><span class="mono">Act1-Jail</span><br>1 : 1 : 1，共用 X</td><td rowspan="3">三層視為一張大圖。</td><td rowspan="3"><span class="chip a">A-</span></td></tr>
+<tr><td>監牢第二層</td></tr><tr><td>監牢第三層</td></tr>
+<tr><td>兵營</td><td><span class="mono">Act1-Barracks</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #7｜The Pit / Tamoe Highland / Outer Cloister</td></tr>
-      <tr><td>Pit Level 1</td><td rowspan="2"><span class="mono">Act1-Monastery-Cave</span><br>3 : 1，共用 X</td><td>主權重層。</td><td rowspan="2"><span class="chip a">A</span></td></tr>
-      <tr><td>Pit Level 2</td><td>接續補完。</td></tr>
-      <tr><td>Tamoe Highland</td><td rowspan="3"><span class="mono">Act1-Monastery-Wilderness</span><br>2 : 1 : 1，共用 X</td><td>主權重區。</td><td rowspan="3"><span class="chip a">A-</span></td></tr>
-      <tr><td>Monastery Gate <span class="subtle">（官方組名未列，但同 Herald zone）</span></td><td>Shard 全章時一併計入。</td></tr>
-      <tr><td>Outer Cloister</td><td>接續補完。</td></tr>
+<tr class="grouprow"><td colspan="4">官方 #7｜地穴 / 泰摩高地 / 外側迴廊</td></tr>
+<tr><td>地穴第一層</td><td rowspan="2"><span class="mono">Act1-Monastery-Cave</span><br>3 : 1，共用 X</td><td>主權重層。</td><td rowspan="2"><span class="chip a">A</span></td></tr>
+<tr><td>地穴第二層</td><td>接續補完。</td></tr>
+<tr><td>泰摩高地</td><td rowspan="3"><span class="mono">Act1-Monastery-Wilderness</span><br>2 : 1 : 1，共用 X</td><td>主權重區。</td><td rowspan="3"><span class="chip a">A-</span></td></tr>
+<tr><td>修道院大門 <span class="subtle">（官方組名未列，但同恐懼使者區域）</span></td><td>世界之石碎片全章時一併計入。</td></tr>
+<tr><td>外側迴廊</td><td>接續補完。</td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #8｜Inner Cloister / Cathedral and Catacombs</td></tr>
-      <tr><td>Inner Cloister</td><td rowspan="6"><span class="mono">Act1-Catacombs</span><br>0.5 : 1 : 2 : 2 : 2 : 1，共用 X</td><td rowspan="6">T5 高價值整組；只從 Cata 2 WP 往下會漏掉大量 completion 權重。</td><td rowspan="6"><span class="chip s">S-</span></td></tr>
-      <tr><td>Cathedral</td></tr><tr><td>Catacombs Level 1</td></tr><tr><td>Catacombs Level 2</td></tr><tr><td>Catacombs Level 3</td></tr><tr><td>Catacombs Level 4</td></tr>
+<tr class="grouprow"><td colspan="4">官方 #8｜內側迴廊 / 大教堂和地下墓穴</td></tr>
+<tr><td>內側迴廊</td><td rowspan="6"><span class="mono">Act1-Catacombs</span><br>0.5 : 1 : 2 : 2 : 2 : 1，共用 X</td><td rowspan="6">T5 高價值整組；只從地下墓穴第二層傳送點往下，會漏掉大量完成度權重。</td><td rowspan="6"><span class="chip s">S-</span></td></tr>
+<tr><td>大教堂</td></tr><tr><td>地下墓穴第一層</td></tr><tr><td>地下墓穴第二層</td></tr><tr><td>地下墓穴第三層</td></tr><tr><td>地下墓穴第四層</td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #9｜Moo Moo Farm</td></tr>
-      <tr><td>Moo Moo Farm</td><td><span class="mono">Act1-MooMooFarm</span> / 1</td><td>T5 核心資產，深清。</td><td><span class="chip s">S</span></td></tr>
-    </tbody>
-  </table>
-  <div class="route"><b>注意：</b>本表現在以 Blizzard 3.3 官方 rotation group 順序排列；策略路線請看第九節，不再用策略優先度打亂五章地圖表。</div>
+<tr class="grouprow"><td colspan="4">官方 #9｜哞哞農莊</td></tr>
+<tr><td>秘密乳牛關</td><td><span class="mono">Act1-MooMooFarm</span> / 1</td><td>T5 核心資產，深清。</td><td><span class="chip s">S</span></td></tr>
+</tbody></table>
 </section>
 
 <section id="a2">
-  <h2>五、Act 2 全地圖策略</h2>
-  <p class="subtle">依 Blizzard 3.3 官方 rotation group #1→#7 排列；每組內展開所有實際 Level。Maggot Lair 三層特別注意：三層是三個獨立 Herald X。</p>
-  <table>
-    <thead><tr><th>官方 3.3 組別／地圖</th><th>Herald zone / Weight</th><th>策略</th><th>評級</th></tr></thead>
-    <tbody>
-      <tr class="grouprow"><td colspan="4">官方 #1｜Sewers</td></tr>
-      <tr><td>Sewers Level 1</td><td rowspan="3"><span class="mono">Act2-Sewers</span><br>1 : 1 : 1，共用 X</td><td rowspan="3">三層完整刷。</td><td rowspan="3"><span class="chip a">A-</span></td></tr>
-      <tr><td>Sewers Level 2</td></tr><tr><td>Sewers Level 3</td></tr>
+<h2>五、第二章全地圖策略</h2>
+<p class="subtle">依暴雪 3.3 官方輪替組別 #1→#7 排列；每組內展開所有實際地圖。蛆蟲巢穴三層特別注意：三層是三個獨立的恐懼使者 X。</p>
+<table><thead><tr><th>官方 3.3 組別／地圖</th><th>恐懼使者區域／權重</th><th>策略</th><th>評級</th></tr></thead><tbody>
+<tr class="grouprow"><td colspan="4">官方 #1｜下水道</td></tr>
+<tr><td>下水道第一層</td><td rowspan="3"><span class="mono">Act2-Sewers</span><br>1 : 1 : 1，共用 X</td><td rowspan="3">三層完整刷。</td><td rowspan="3"><span class="chip a">A-</span></td></tr><tr><td>下水道第二層</td></tr><tr><td>下水道第三層</td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #2｜Rocky Waste and Stony Tomb</td></tr>
-      <tr><td>Rocky Waste</td><td><span class="mono">Act2-RockyWaste</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Stony Tomb Level 1</td><td rowspan="2"><span class="mono">Act2-RockyWaste-Tomb</span><br>1 : 1，共用 X</td><td rowspan="2">低～中價值；升階可用。</td><td rowspan="2"><span class="chip c">C+</span></td></tr>
-      <tr><td>Stony Tomb Level 2</td></tr>
+<tr class="grouprow"><td colspan="4">官方 #2｜碎石荒地和古老石墓</td></tr>
+<tr><td>碎石荒地</td><td><span class="mono">Act2-RockyWaste</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr><td>古老石墓第一層</td><td rowspan="2"><span class="mono">Act2-RockyWaste-Tomb</span><br>1 : 1，共用 X</td><td rowspan="2">低～中價值；升階可用。</td><td rowspan="2"><span class="chip c">C+</span></td></tr><tr><td>古老石墓第二層</td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #3｜Dry Hills and Halls of the Dead</td></tr>
-      <tr><td>Dry Hills</td><td><span class="mono">Act2-DryHills</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Halls of the Dead Level 1</td><td rowspan="3"><span class="mono">Act2-DryHills-Tomb</span><br>1 : 1 : 1，共用 X</td><td rowspan="3">T5 高價值整組。</td><td rowspan="3"><span class="chip a">A</span></td></tr>
-      <tr><td>Halls of the Dead Level 2</td></tr><tr><td>Halls of the Dead Level 3</td></tr>
+<tr class="grouprow"><td colspan="4">官方 #3｜乾土高地和死亡之殿</td></tr>
+<tr><td>乾土高地</td><td><span class="mono">Act2-DryHills</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr><td>死亡之殿第一層</td><td rowspan="3"><span class="mono">Act2-DryHills-Tomb</span><br>1 : 1 : 1，共用 X</td><td rowspan="3">T5 高價值整組。</td><td rowspan="3"><span class="chip a">A</span></td></tr><tr><td>死亡之殿第二層</td></tr><tr><td>死亡之殿第三層</td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #4｜Far Oasis and The Maggot Lair</td></tr>
-      <tr><td>Far Oasis</td><td><span class="mono">Act2-FarOasis</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Maggot Lair Level 1</td><td><span class="mono">Act2-FarOasis-LairA</span> / 1</td><td>獨立 X；一層就是一張新彩票。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Maggot Lair Level 2</td><td><span class="mono">Act2-FarOasis-LairB</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Maggot Lair Level 3</td><td><span class="mono">Act2-FarOasis-LairC</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr class="grouprow"><td colspan="4">官方 #4｜遙遠的綠洲和蛆蟲巢穴</td></tr>
+<tr><td>遙遠的綠洲</td><td><span class="mono">Act2-FarOasis</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr><td>蛆蟲巢穴第一層</td><td><span class="mono">Act2-FarOasis-LairA</span> / 1</td><td>獨立 X；一層就是一張新彩票。</td><td><span class="chip b">B</span></td></tr>
+<tr><td>蛆蟲巢穴第二層</td><td><span class="mono">Act2-FarOasis-LairB</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr><td>蛆蟲巢穴第三層</td><td><span class="mono">Act2-FarOasis-LairC</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #5｜Lost City, Valley of Snakes, Claw Viper Temple, Ancient Tunnels</td></tr>
-      <tr><td>Lost City</td><td><span class="mono">Act2-LostCity</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Valley of Snakes</td><td>無 Herald completion 欄位</td><td>官方 TZ 組內，但不拿來累積 Herald X。</td><td><span class="chip pass">路過</span></td></tr>
-      <tr><td>Claw Viper Temple Level 1</td><td rowspan="2"><span class="mono">Act2-LostCity-Tomb</span><br>3 : 1，共用 X</td><td>主權重層。</td><td rowspan="2"><span class="chip b">B</span></td></tr>
-      <tr><td>Claw Viper Temple Level 2</td><td>接續補完。</td></tr>
-      <tr><td>Ancient Tunnels</td><td><span class="mono">Act2-LostCity-Sewer</span> / 1</td><td>獨立 X。</td><td><span class="chip a">A-</span></td></tr>
+<tr class="grouprow"><td colspan="4">官方 #5｜失落古城、群蛇峽谷、利爪蛇魔神殿和古代通道</td></tr>
+<tr><td>失落古城</td><td><span class="mono">Act2-LostCity</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr><td>群蛇峽谷</td><td>無恐懼使者完成度欄位</td><td>官方邪惡威脅區域組內，但不拿來累積 X。</td><td><span class="chip pass">路過</span></td></tr>
+<tr><td>利爪蛇魔神殿第一層</td><td rowspan="2"><span class="mono">Act2-LostCity-Tomb</span><br>3 : 1，共用 X</td><td>主權重層。</td><td rowspan="2"><span class="chip b">B</span></td></tr><tr><td>利爪蛇魔神殿第二層</td><td>接續補完。</td></tr>
+<tr><td>古代通道</td><td><span class="mono">Act2-LostCity-Sewer</span> / 1</td><td>獨立 X。</td><td><span class="chip a">A-</span></td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #6｜Harem, Palace and Arcane Sanctuary</td></tr>
-      <tr><td>Harem Level 1</td><td>無 Herald completion 欄位</td><td>通行層。</td><td><span class="chip pass">路過</span></td></tr>
-      <tr><td>Harem Level 2</td><td><span class="mono">Act2-ArcaneSanctuary-Harem</span> / 1</td><td>獨立 X。</td><td><span class="chip c">C+</span></td></tr>
-      <tr><td>Palace Cellar Level 1</td><td rowspan="3"><span class="mono">Act2-ArcaneSanctuary-Basement</span><br>1 : 1 : 1，共用 X</td><td rowspan="3">三層完整刷。</td><td rowspan="3"><span class="chip b">B</span></td></tr>
-      <tr><td>Palace Cellar Level 2</td></tr><tr><td>Palace Cellar Level 3</td></tr>
-      <tr><td>Arcane Sanctuary</td><td><span class="mono">Act2-ArcaneSanctuary</span> / 1</td><td>T5 核心資產。</td><td><span class="chip s">S</span></td></tr>
+<tr class="grouprow"><td colspan="4">官方 #6｜後宮、皇宮和秘法聖殿</td></tr>
+<tr><td>後宮第一層</td><td>無恐懼使者完成度欄位</td><td>通行層。</td><td><span class="chip pass">路過</span></td></tr>
+<tr><td>後宮第二層</td><td><span class="mono">Act2-ArcaneSanctuary-Harem</span> / 1</td><td>獨立 X。</td><td><span class="chip c">C+</span></td></tr>
+<tr><td>皇宮地窖第一層</td><td rowspan="3"><span class="mono">Act2-ArcaneSanctuary-Basement</span><br>1 : 1 : 1，共用 X</td><td rowspan="3">三層完整刷。</td><td rowspan="3"><span class="chip b">B</span></td></tr><tr><td>皇宮地窖第二層</td></tr><tr><td>皇宮地窖第三層</td></tr>
+<tr><td>秘法聖殿</td><td><span class="mono">Act2-ArcaneSanctuary</span> / 1</td><td>T5 核心資產。</td><td><span class="chip s">S</span></td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #7｜Canyon of the Magi and Tal Rasha's Tombs</td></tr>
-      <tr><td>Canyon of the Magi</td><td><span class="mono">Act2-TalRashas</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Tal Rasha's Tomb #1</td><td><span class="mono">Act2-TalRashas-Tomb1</span> / 1</td><td rowspan="7">七座 Tomb 各自獨立 X；T5 高價值。</td><td rowspan="7"><span class="chip s">S</span></td></tr>
-      <tr><td>Tal Rasha's Tomb #2</td><td><span class="mono">Act2-TalRashas-Tomb2</span> / 1</td></tr>
-      <tr><td>Tal Rasha's Tomb #3</td><td><span class="mono">Act2-TalRashas-Tomb3</span> / 1</td></tr>
-      <tr><td>Tal Rasha's Tomb #4</td><td><span class="mono">Act2-TalRashas-Tomb4</span> / 1</td></tr>
-      <tr><td>Tal Rasha's Tomb #5</td><td><span class="mono">Act2-TalRashas-Tomb5</span> / 1</td></tr>
-      <tr><td>Tal Rasha's Tomb #6</td><td><span class="mono">Act2-TalRashas-Tomb6</span> / 1</td></tr>
-      <tr><td>Tal Rasha's Tomb #7</td><td><span class="mono">Act2-TalRashas-Tomb7</span> / 1</td></tr>
-      <tr class="extra"><td>Duriel's Lair <span class="subtle">（Shard 全章補圖／Boss room）</span></td><td>無 Herald completion 欄位</td><td>Boss／掉落用途。</td><td><span class="chip pass">路過</span></td></tr>
-    </tbody>
-  </table>
+<tr class="grouprow"><td colspan="4">官方 #7｜賢者之谷和塔拉夏的古墓</td></tr>
+<tr><td>賢者之谷</td><td><span class="mono">Act2-TalRashas</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr><td>塔拉夏的古墓 #1</td><td><span class="mono">Act2-TalRashas-Tomb1</span> / 1</td><td rowspan="7">七座古墓各自獨立 X；T5 高價值。</td><td rowspan="7"><span class="chip s">S</span></td></tr>
+<tr><td>塔拉夏的古墓 #2</td><td><span class="mono">Act2-TalRashas-Tomb2</span> / 1</td></tr>
+<tr><td>塔拉夏的古墓 #3</td><td><span class="mono">Act2-TalRashas-Tomb3</span> / 1</td></tr>
+<tr><td>塔拉夏的古墓 #4</td><td><span class="mono">Act2-TalRashas-Tomb4</span> / 1</td></tr>
+<tr><td>塔拉夏的古墓 #5</td><td><span class="mono">Act2-TalRashas-Tomb5</span> / 1</td></tr>
+<tr><td>塔拉夏的古墓 #6</td><td><span class="mono">Act2-TalRashas-Tomb6</span> / 1</td></tr>
+<tr><td>塔拉夏的古墓 #7</td><td><span class="mono">Act2-TalRashas-Tomb7</span> / 1</td></tr>
+<tr class="extra"><td>塔拉夏的密室 <span class="subtle">（世界之石碎片全章補圖／首領房）</span></td><td>無恐懼使者完成度欄位</td><td>首領／掉落用途。</td><td><span class="chip pass">路過</span></td></tr>
+</tbody></table>
 </section>
 
 <section id="a3">
-  <h2>六、Act 3 全地圖策略</h2>
-  <p class="subtle">依 Blizzard 3.3 官方 rotation group #1→#6 排列。Kurast Causeway 與 Kurast Sewers 雖未列在目前 rotation group 名稱中，但現行 Herald 資料仍有 completion zone，故以 Shard 全章補圖列入。</p>
-  <table>
-    <thead><tr><th>官方 3.3 組別／地圖</th><th>Herald zone / Weight</th><th>策略</th><th>評級</th></tr></thead>
-    <tbody>
-      <tr class="grouprow"><td colspan="4">官方 #1｜Spider Forest and Spider Cavern / Arachnid Lair</td></tr>
-      <tr><td>Spider Forest</td><td><span class="mono">Act3-SpiderForest</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Spider Cavern</td><td><span class="mono">Act3-SpiderForest-Cave2</span> / 1</td><td>低 T5 邊際價值；升階起手候選。</td><td><span class="chip c">C</span></td></tr>
-      <tr><td>Arachnid Lair</td><td><span class="mono">Act3-SpiderForest-Cave1</span> / 1</td><td>獨立 X；升階候選。</td><td><span class="chip c">C</span></td></tr>
+<h2>六、第三章全地圖策略</h2>
+<p class="subtle">依暴雪 3.3 官方輪替組別 #1→#6 排列。庫拉斯特堤道與庫拉斯特下水道雖未列在目前輪替組別名稱中，但現行恐懼使者資料仍有完成度區域，因此以世界之石碎片全章補圖列入。</p>
+<table><thead><tr><th>官方 3.3 組別／地圖</th><th>恐懼使者區域／權重</th><th>策略</th><th>評級</th></tr></thead><tbody>
+<tr class="grouprow"><td colspan="4">官方 #1｜蜘蛛森林和蜘蛛洞窟 / 蜘蛛巢穴</td></tr>
+<tr><td>蜘蛛森林</td><td><span class="mono">Act3-SpiderForest</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr><td>蜘蛛洞窟</td><td><span class="mono">Act3-SpiderForest-Cave2</span> / 1</td><td>低 T5 邊際價值；升階起手候選。</td><td><span class="chip c">C</span></td></tr>
+<tr><td>蜘蛛巢穴</td><td><span class="mono">Act3-SpiderForest-Cave1</span> / 1</td><td>獨立 X；升階候選。</td><td><span class="chip c">C</span></td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #2｜Great Marsh</td></tr>
-      <tr><td>Great Marsh</td><td><span class="mono">Act3-GreatMarsh</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr class="grouprow"><td colspan="4">官方 #2｜大沼澤</td></tr>
+<tr><td>大沼澤</td><td><span class="mono">Act3-GreatMarsh</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #3｜Flayer Jungle and Flayer Dungeon / Swampy Pit</td></tr>
-      <tr><td>Flayer Jungle</td><td><span class="mono">Act3-FlayerJungle</span> / 1</td><td>T5 核心資產，深清。</td><td><span class="chip s">S</span></td></tr>
-      <tr><td>Flayer Dungeon Level 1</td><td rowspan="3"><span class="mono">Act3-FlayerJungle-Dungeon2</span><br>2 : 2 : 1，共用 X</td><td rowspan="3">前兩層權重較高。</td><td rowspan="3"><span class="chip a">A-</span></td></tr>
-      <tr><td>Flayer Dungeon Level 2</td></tr><tr><td>Flayer Dungeon Level 3</td></tr>
-      <tr><td>Swampy Pit Level 1</td><td rowspan="3"><span class="mono">Act3-FlayerJungle-Dungeon1</span><br>1 : 1 : 1，共用 X</td><td rowspan="3">三層完整刷。</td><td rowspan="3"><span class="chip b">B</span></td></tr>
-      <tr><td>Swampy Pit Level 2</td></tr><tr><td>Swampy Pit Level 3</td></tr>
+<tr class="grouprow"><td colspan="4">官方 #3｜剝皮叢林和剝皮地牢 / 沼澤地穴</td></tr>
+<tr><td>剝皮叢林</td><td><span class="mono">Act3-FlayerJungle</span> / 1</td><td>T5 核心資產，深清。</td><td><span class="chip s">S</span></td></tr>
+<tr><td>剝皮地牢第一層</td><td rowspan="3"><span class="mono">Act3-FlayerJungle-Dungeon2</span><br>2 : 2 : 1，共用 X</td><td rowspan="3">前兩層權重較高。</td><td rowspan="3"><span class="chip a">A-</span></td></tr><tr><td>剝皮地牢第二層</td></tr><tr><td>剝皮地牢第三層</td></tr>
+<tr><td>沼澤地穴第一層</td><td rowspan="3"><span class="mono">Act3-FlayerJungle-Dungeon1</span><br>1 : 1 : 1，共用 X</td><td rowspan="3">三層完整刷。</td><td rowspan="3"><span class="chip b">B</span></td></tr><tr><td>沼澤地穴第二層</td></tr><tr><td>沼澤地穴第三層</td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #4｜Kurast Bazaar, Ruined Temple, Disused Fane, Lower Kurast, Upper Kurast, Forgotten Temple, Forgotten Reliquary, Disused Reliquary, Ruined Fane</td></tr>
-      <tr><td>Kurast Bazaar</td><td><span class="mono">Act3-Kurast2</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Ruined Temple</td><td rowspan="2"><span class="mono">Act3-KurastTemple</span> / 各 1（六座神殿共用 X）</td><td rowspan="2">與後面四座神殿同一 X。</td><td rowspan="2"><span class="chip b">B</span></td></tr>
-      <tr><td>Disused Fane</td></tr>
-      <tr><td>Lower Kurast</td><td><span class="mono">Act3-Kurast1</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Upper Kurast</td><td rowspan="2"><span class="mono">Act3-Kurast3</span><br>9 : 1，共用 X</td><td>主權重區，約佔此 zone 90% 權重。</td><td rowspan="2"><span class="chip a">A</span></td></tr>
-      <tr class="extra"><td>Kurast Causeway <span class="subtle">（官方組名未列，但同 Herald zone）</span></td><td>補尾巴。</td></tr>
-      <tr><td>Forgotten Temple</td><td rowspan="4"><span class="mono">Act3-KurastTemple</span> / 各 1（承上，共用 X）</td><td rowspan="4">六座神殿要視為一張大 Herald zone。</td><td rowspan="4"><span class="chip b">B</span></td></tr>
-      <tr><td>Forgotten Reliquary</td></tr><tr><td>Disused Reliquary</td></tr><tr><td>Ruined Fane</td></tr>
-      <tr class="extra"><td>Kurast Sewers Level 1 <span class="subtle">（Shard 全章補圖）</span></td><td rowspan="2"><span class="mono">Act3-KurastSewer</span><br>4 : 1，共用 X</td><td>Lv1 主權重。</td><td rowspan="2"><span class="chip a">A</span></td></tr>
-      <tr class="extra"><td>Kurast Sewers Level 2 <span class="subtle">（Shard 全章補圖）</span></td><td>接續補完。</td></tr>
+<tr class="grouprow"><td colspan="4">官方 #4｜庫拉斯特市集、荒廢的神殿、廢棄的寺院、庫拉斯特下層、庫拉斯特上層、遺忘神殿、遺忘的聖殿、廢棄的聖殿、荒廢的寺院</td></tr>
+<tr><td>庫拉斯特市集</td><td><span class="mono">Act3-Kurast2</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr><td>荒廢的神殿</td><td rowspan="2"><span class="mono">Act3-KurastTemple</span> / 各 1（六座神殿共用 X）</td><td rowspan="2">與後面四座神殿同一 X。</td><td rowspan="2"><span class="chip b">B</span></td></tr><tr><td>廢棄的寺院</td></tr>
+<tr><td>庫拉斯特下層</td><td><span class="mono">Act3-Kurast1</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr><td>庫拉斯特上層</td><td rowspan="2"><span class="mono">Act3-Kurast3</span><br>9 : 1，共用 X</td><td>主權重區，約佔此區域 90% 權重。</td><td rowspan="2"><span class="chip a">A</span></td></tr>
+<tr class="extra"><td>庫拉斯特堤道 <span class="subtle">（官方組名未列，但同恐懼使者區域）</span></td><td>補尾巴。</td></tr>
+<tr><td>遺忘神殿</td><td rowspan="4"><span class="mono">Act3-KurastTemple</span> / 各 1（承上，共用 X）</td><td rowspan="4">六座神殿要視為一個大恐懼使者區域。</td><td rowspan="4"><span class="chip b">B</span></td></tr>
+<tr><td>遺忘的聖殿</td></tr><tr><td>廢棄的聖殿</td></tr><tr><td>荒廢的寺院</td></tr>
+<tr class="extra"><td>下水道第一層 <span class="subtle">（世界之石碎片全章補圖）</span></td><td rowspan="2"><span class="mono">Act3-KurastSewer</span><br>4 : 1，共用 X</td><td>第一層主權重。</td><td rowspan="2"><span class="chip a">A</span></td></tr>
+<tr class="extra"><td>下水道第二層 <span class="subtle">（世界之石碎片全章補圖）</span></td><td>接續補完。</td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #5｜Travincal</td></tr>
-      <tr><td>Travincal</td><td><span class="mono">Act3-Travincal</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr class="grouprow"><td colspan="4">官方 #5｜崔凡克</td></tr>
+<tr><td>崔凡克</td><td><span class="mono">Act3-Travincal</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #6｜Durance of Hate</td></tr>
-      <tr><td>Durance of Hate Level 1</td><td rowspan="3"><span class="mono">Act3-DuranceOfHate</span><br>2 : 3 : 1，共用 X</td><td rowspan="3">T5 高價值整組；Lv2 權重最高。</td><td rowspan="3"><span class="chip s">S-</span></td></tr>
-      <tr><td>Durance of Hate Level 2</td></tr><tr><td>Durance of Hate Level 3</td></tr>
-    </tbody>
-  </table>
+<tr class="grouprow"><td colspan="4">官方 #6｜憎恨囚牢</td></tr>
+<tr><td>憎恨囚牢第一層</td><td rowspan="3"><span class="mono">Act3-DuranceOfHate</span><br>2 : 3 : 1，共用 X</td><td rowspan="3">T5 高價值整組；第二層權重最高。</td><td rowspan="3"><span class="chip s">S-</span></td></tr><tr><td>憎恨囚牢第二層</td></tr><tr><td>憎恨囚牢第三層</td></tr>
+</tbody></table>
 </section>
 
 <section id="a4">
-  <h2>七、Act 4 全地圖策略</h2>
-  <p class="subtle">Act 4 依 Blizzard 3.3 官方列出的三個 rotation groups 原順序排列；注意官方 #2 的文字順序是 River of Flame / City of the Damned。</p>
-  <table>
-    <thead><tr><th>官方 3.3 組別／地圖</th><th>Herald zone / Weight</th><th>策略</th><th>評級</th></tr></thead>
-    <tbody>
-      <tr class="grouprow"><td colspan="4">官方 #1｜Outer Steppes and Plains of Despair</td></tr>
-      <tr><td>Outer Steppes</td><td><span class="mono">Act4_OuterSteppes1</span> / 1</td><td>獨立 X；升階優先使用。</td><td><span class="chip c">C+</span></td></tr>
-      <tr><td>Plains of Despair</td><td><span class="mono">Act4_OuterSteppes2</span> / 1</td><td>獨立 X；升階優先使用。</td><td><span class="chip c">C+</span></td></tr>
+<h2>七、第四章全地圖策略</h2>
+<p class="subtle">依暴雪 3.3 官方三個輪替組別原順序排列；官方 #2 的文字順序為「火焰之河 / 罪罰之城」。</p>
+<table><thead><tr><th>官方 3.3 組別／地圖</th><th>恐懼使者區域／權重</th><th>策略</th><th>評級</th></tr></thead><tbody>
+<tr class="grouprow"><td colspan="4">官方 #1｜外圍荒原和絕望平原</td></tr>
+<tr><td>外圍荒原</td><td><span class="mono">Act4_OuterSteppes1</span> / 1</td><td>獨立 X；升階優先使用。</td><td><span class="chip c">C+</span></td></tr>
+<tr><td>絕望平原</td><td><span class="mono">Act4_OuterSteppes2</span> / 1</td><td>獨立 X；升階優先使用。</td><td><span class="chip c">C+</span></td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #2｜River of Flame / City of the Damned</td></tr>
-      <tr><td>River of Flame</td><td><span class="mono">Act4-RiverOfFlame2</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>City of the Damned</td><td><span class="mono">Act4-RiverOfFlame1</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B-</span></td></tr>
+<tr class="grouprow"><td colspan="4">官方 #2｜火焰之河 / 罪罰之城</td></tr>
+<tr><td>火焰之河</td><td><span class="mono">Act4-RiverOfFlame2</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr><td>罪罰之城</td><td><span class="mono">Act4-RiverOfFlame1</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B-</span></td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #3｜Chaos Sanctuary</td></tr>
-      <tr><td>The Chaos Sanctuary</td><td><span class="mono">Act4-ChaosSanctuary</span> / 1</td><td>T5 正常全清；Herald farming 不採純 Seal Rush。</td><td><span class="chip a">A</span></td></tr>
-    </tbody>
-  </table>
+<tr class="grouprow"><td colspan="4">官方 #3｜混沌魔殿</td></tr>
+<tr><td>混沌魔殿</td><td><span class="mono">Act4-ChaosSanctuary</span> / 1</td><td>T5 正常全清；恐懼使者刷圖不採純封印速刷。</td><td><span class="chip a">A</span></td></tr>
+</tbody></table>
 </section>
 
 <section id="a5">
-  <h2>八、Act 5 全地圖策略</h2>
-  <p class="subtle">依 Blizzard 3.3 官方 rotation group #1→#8 排列；Arreat Summit 是全 Act Shard 下的實際 Level，但沒有 Herald completion 欄位，因此另列補圖。</p>
-  <table>
-    <thead><tr><th>官方 3.3 組別／地圖</th><th>Herald zone / Weight</th><th>策略</th><th>評級</th></tr></thead>
-    <tbody>
-      <tr class="grouprow"><td colspan="4">官方 #1｜Bloody Foothills / Frigid Highlands / Abaddon</td></tr>
-      <tr><td>Bloody Foothills</td><td><span class="mono">Act5-BloodyFoothils1</span> / 1</td><td>T5 核心資產，深清。</td><td><span class="chip s">S</span></td></tr>
-      <tr><td>Frigid Highlands</td><td><span class="mono">Act5-BloodyFoothils2</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Abaddon</td><td><span class="mono">Act5-BloodyFoothils3</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<h2>八、第五章全地圖策略</h2>
+<p class="subtle">依暴雪 3.3 官方輪替組別 #1→#8 排列；亞瑞特山巔是全章世界之石碎片啟用後的實際地圖，但沒有恐懼使者完成度欄位，因此另列補圖。</p>
+<table><thead><tr><th>官方 3.3 組別／地圖</th><th>恐懼使者區域／權重</th><th>策略</th><th>評級</th></tr></thead><tbody>
+<tr class="grouprow"><td colspan="4">官方 #1｜血腥丘陵 / 冰凍高地 / 亞巴頓</td></tr>
+<tr><td>血腥丘陵</td><td><span class="mono">Act5-BloodyFoothils1</span> / 1</td><td>T5 核心資產，深清。</td><td><span class="chip s">S</span></td></tr>
+<tr><td>冰凍高地</td><td><span class="mono">Act5-BloodyFoothils2</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr><td>亞巴頓</td><td><span class="mono">Act5-BloodyFoothils3</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #2｜Glacial Trail / Drifter Cavern</td></tr>
-      <tr><td>Glacial Trail</td><td rowspan="2"><span class="mono">Act5-GlacialTrail</span><br>3 : 1，共用 X</td><td>主權重區。</td><td rowspan="2"><span class="chip a">A-</span></td></tr>
-      <tr><td>Drifter Cavern</td><td>接續補完。</td></tr>
+<tr class="grouprow"><td colspan="4">官方 #2｜冰河小徑 / 漂泊者洞窟</td></tr>
+<tr><td>冰河小徑</td><td rowspan="2"><span class="mono">Act5-GlacialTrail</span><br>3 : 1，共用 X</td><td>主權重區。</td><td rowspan="2"><span class="chip a">A-</span></td></tr><tr><td>漂泊者洞窟</td><td>接續補完。</td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #3｜Crystalline Passage and Frozen River</td></tr>
-      <tr><td>Crystalline Passage</td><td><span class="mono">Act5-CrystallinePassage1</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Frozen River</td><td><span class="mono">Act5-CrystallinePassage2</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr class="grouprow"><td colspan="4">官方 #3｜水晶通道和冰凍之河</td></tr>
+<tr><td>水晶通道</td><td><span class="mono">Act5-CrystallinePassage1</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr><td>冰凍之河</td><td><span class="mono">Act5-CrystallinePassage2</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #4｜Frozen Tundra + Infernal Pit</td></tr>
-      <tr><td>Frozen Tundra</td><td><span class="mono">Act5-FrozenTundra1</span> / 1</td><td>T5 高優先。</td><td><span class="chip a">A</span></td></tr>
-      <tr><td>Infernal Pit</td><td><span class="mono">Act5-FrozenTundra2</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr class="grouprow"><td colspan="4">官方 #4｜冰凍苔原 + 煉獄地穴</td></tr>
+<tr><td>冰凍苔原</td><td><span class="mono">Act5-FrozenTundra1</span> / 1</td><td>T5 高優先。</td><td><span class="chip a">A</span></td></tr>
+<tr><td>煉獄地穴</td><td><span class="mono">Act5-FrozenTundra2</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #5｜Arreat Plateau / Pit of Acheron</td></tr>
-      <tr><td>Arreat Plateau</td><td><span class="mono">Act5-ArreatPlateau1</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Pit of Acheron</td><td><span class="mono">Act5-ArreatPlateau2</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr class="grouprow"><td colspan="4">官方 #5｜亞瑞特高原 / 冥河地穴</td></tr>
+<tr><td>亞瑞特高原</td><td><span class="mono">Act5-ArreatPlateau1</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr><td>冥河地穴</td><td><span class="mono">Act5-ArreatPlateau2</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #6｜Nihlathak's Temple, Halls of Anguish, Halls of Pain, Halls of Vaught</td></tr>
-      <tr><td>Nihlathak's Temple</td><td rowspan="2"><span class="mono">Act5-Halls1</span><br>1 : 3，共用 X</td><td>與 Anguish 共用；Anguish 權重高。</td><td rowspan="2"><span class="chip s">S-</span></td></tr>
-      <tr><td>Halls of Anguish</td><td>主權重層。</td></tr>
-      <tr><td>Halls of Pain</td><td><span class="mono">Act5-Halls2</span> / 1</td><td>獨立 X；T5 高優先。</td><td><span class="chip a">A</span></td></tr>
-      <tr><td>Halls of Vaught</td><td><span class="mono">Act5-Halls3</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+<tr class="grouprow"><td colspan="4">官方 #6｜尼拉塞克的神殿、怨慟之廳、苦痛之廳和沃特之廳</td></tr>
+<tr><td>尼拉塞克的神殿</td><td rowspan="2"><span class="mono">Act5-Halls1</span><br>1 : 3，共用 X</td><td>與怨慟之廳共用；怨慟之廳權重高。</td><td rowspan="2"><span class="chip s">S-</span></td></tr>
+<tr><td>怨慟之廳</td><td>主權重層。</td></tr>
+<tr><td>苦痛之廳</td><td><span class="mono">Act5-Halls2</span> / 1</td><td>獨立 X；T5 高優先。</td><td><span class="chip a">A</span></td></tr>
+<tr><td>沃特之廳</td><td><span class="mono">Act5-Halls3</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #7｜Ancient's Way and Icy Cellar</td></tr>
-      <tr><td>The Ancients' Way</td><td rowspan="2"><span class="mono">Act5-AncientsWay</span><br>3 : 1，共用 X</td><td>主權重區。</td><td rowspan="2"><span class="chip a">A-</span></td></tr>
-      <tr><td>Icy Cellar</td><td>接續補完。</td></tr>
-      <tr class="extra"><td>Arreat Summit <span class="subtle">（Shard 全章補圖）</span></td><td>無 Herald completion 欄位</td><td>任務／Ancients 用，不作 Herald farming。</td><td><span class="chip pass">路過</span></td></tr>
+<tr class="grouprow"><td colspan="4">官方 #7｜先祖之路和冰窖</td></tr>
+<tr><td>先祖之路</td><td rowspan="2"><span class="mono">Act5-AncientsWay</span><br>3 : 1，共用 X</td><td>主權重區。</td><td rowspan="2"><span class="chip a">A-</span></td></tr>
+<tr><td>冰窖</td><td>接續補完。</td></tr>
+<tr class="extra"><td>亞瑞特山巔 <span class="subtle">（世界之石碎片全章補圖）</span></td><td>無恐懼使者完成度欄位</td><td>任務／先祖用途，不作恐懼使者刷圖。</td><td><span class="chip pass">路過</span></td></tr>
 
-      <tr class="grouprow"><td colspan="4">官方 #8｜Worldstone Keep, Throne of Destruction, Worldstone Chamber</td></tr>
-      <tr><td>The Worldstone Keep Level 1</td><td rowspan="4"><span class="mono">Act5-WorldstoneKeep</span><br>2 : 2 : 2 : 1，共用 X</td><td rowspan="4">T5 頂級 Herald zone；WSK1→2→3→Throne 深清。</td><td rowspan="4"><span class="chip s">S+</span></td></tr>
-      <tr><td>The Worldstone Keep Level 2</td></tr><tr><td>The Worldstone Keep Level 3</td></tr><tr><td>Throne of Destruction</td></tr>
-      <tr><td>The Worldstone Chamber</td><td>無 Herald completion 欄位</td><td>官方 TZ 組內 Boss room，但不拿來累積 X。</td><td><span class="chip pass">路過</span></td></tr>
-    </tbody>
-  </table>
+<tr class="grouprow"><td colspan="4">官方 #8｜世界之石要塞、毀滅王座和世界之石大殿</td></tr>
+<tr><td>世界之石要塞第一層</td><td rowspan="4"><span class="mono">Act5-WorldstoneKeep</span><br>2 : 2 : 2 : 1，共用 X</td><td rowspan="4">T5 頂級恐懼使者區域；第一層→第二層→第三層→毀滅王座深清。</td><td rowspan="4"><span class="chip s">S+</span></td></tr>
+<tr><td>世界之石要塞第二層</td></tr><tr><td>世界之石要塞第三層</td></tr><tr><td>毀滅王座</td></tr>
+<tr><td>世界之石大殿</td><td>無恐懼使者完成度欄位</td><td>官方邪惡威脅區域組內首領房，但不拿來累積 X。</td><td><span class="chip pass">路過</span></td></tr>
+</tbody></table>
 </section>
 
 <section id="master">
-  <h2>九、五 Act 全開：整場總路線</h2>
-  <h3>Phase 1｜升階</h3>
-  <div class="route"><b>Spider Cavern → Arachnid Lair → Outer Steppes → Plains → City → River → Den → Stony Tomb</b><br>每出一隻就立刻換新的 <span class="mono">zone_data_id</span>；一到 T5 就停止消耗低階升級區。</div>
+<h2>九、五章全開：整場總路線</h2>
+<h3>階段 1｜升階</h3>
+<div class="route"><b>蜘蛛洞窟 → 蜘蛛巢穴 → 外圍荒原 → 絕望平原 → 罪罰之城 → 火焰之河 → 邪惡洞窟 → 古老石墓</b><br>每出一隻就立刻換新的 <span class="mono">zone_data_id</span>；一到 T5 就停止消耗低階升級區。</div>
 
-  <h3>Phase 2｜T5 第一梯隊</h3>
-  <div class="route"><b>WSK/Throne → Cow → Bloody Foothills → Flayer Jungle → Arcane → Nihlathak Temple/Anguish → Halls of Pain → Durance → 七 Tal Tombs → Frozen Tundra → Cathedral/Catacombs → Halls of Dead</b></div>
+<h3>階段 2｜T5 第一梯隊</h3>
+<div class="route"><b>世界之石要塞／毀滅王座 → 秘密乳牛關 → 血腥丘陵 → 剝皮叢林 → 秘法聖殿 → 尼拉塞克的神殿／怨慟之廳 → 苦痛之廳 → 憎恨囚牢 → 七座塔拉夏的古墓 → 冰凍苔原 → 大教堂／地下墓穴 → 死亡之殿</b></div>
 
-  <h3>Phase 3｜T5 第二梯隊</h3>
-  <div class="route">Pit/Tamoe → Tower → Jail → Flayer Dungeon → Kurast Sewer → Upper Kurast → Ancients' Way → Glacial Trail → Crystalline/Frozen River → A2 Sewers → Maggot 1/2/3 → Ancient Tunnels / Claw Viper</div>
+<h3>階段 3｜T5 第二梯隊</h3>
+<div class="route">地穴／泰摩高地 → 遺忘之塔 → 監牢 → 剝皮地牢 → 庫拉斯特下水道 → 庫拉斯特上層 → 先祖之路 → 冰河小徑 → 水晶通道／冰凍之河 → 第二章下水道 → 蛆蟲巢穴第一／二／三層 → 古代通道／利爪蛇魔神殿</div>
 
-  <h3>Phase 4｜全圖掃尾</h3>
-  <div class="route">Blood Moor、Cold Plains、Burial Grounds、Dark Wood、Black Marsh、Rocky Waste、Dry Hills、Far Oasis、Spider Forest、Great Marsh、Lower Kurast、Kurast temples、Travincal、Frigid Highlands、Arreat Plateau、各小洞穴，以及 T1～T4 提早離開留下的殘區。</div>
+<h3>階段 4｜全圖掃尾</h3>
+<div class="route">鮮血荒地、冰冷之原、埋骨之地、黑暗森林、黑色荒地、碎石荒地、乾土高地、遙遠的綠洲、蜘蛛森林、大沼澤、庫拉斯特下層、庫拉斯特神殿群、崔凡克、冰凍高地、亞瑞特高原、各小洞穴，以及 T1～T4 提早離開留下的殘區。</div>
 </section>
 
 <details>
-  <summary>補充：幾個最常犯的錯</summary>
-  <ul>
-    <li>把「換 Area」誤以為等於「換 X」：真正要看 <span class="mono">zone_data_id</span>。</li>
-    <li>低階 Herald 一出仍繼續刷同一 zone：X 已歸零，下一階通常不划算。</li>
-    <li>T5 Herald 一出就走：高價值大 zone 可能還能再生第二、第三隻。</li>
-    <li>先把整張地圖 Teleport 跑亮再回頭殺：會先 populate 更多房間，通常不利於快速把當前 completion 推高。</li>
-    <li>只殺 Elite：新版 Herald 進度核心是整體怪物死亡／zone completion，普通怪同樣重要。</li>
-  </ul>
+<summary>補充：幾個最常犯的錯</summary>
+<ul>
+<li>把「換地圖」誤以為等於「換 X」：真正要看 <span class="mono">zone_data_id</span>。</li>
+<li>低階恐懼使者一出仍繼續刷同一區域：X 已歸零，下一階通常不划算。</li>
+<li>T5 恐懼使者一出就走：高價值大區域可能還能再生第二、第三隻。</li>
+<li>先把整張地圖傳送跑亮再回頭殺：會先生成更多房間怪物，通常不利於快速把當前完成度推高。</li>
+<li>只殺精英怪：新版恐懼使者進度核心是整體怪物死亡／區域完成度，普通怪同樣重要。</li>
+</ul>
 </details>
 
 <footer>
-  本頁為 D2R 3.3 Herald 刷圖策略整理版。分組與權重依現行 desecrated zone 資料結構與社群逆向結果整理；若 Blizzard 後續熱修 Herald / Terror Zone 配置，應重新核對 zone_data_id、weight 與 Logistic 參數。
+本頁為《暗黑破壞神 II：獄火重生》3.3 恐懼使者刷圖策略整理版。地圖名稱採現行繁體中文遊戲用語；系統用語依暴雪目前繁中公告。分組與權重依現行褻瀆區域資料結構與社群逆向結果整理；若暴雪後續熱修恐懼使者或邪惡威脅區域配置，應重新核對 <span class="mono">zone_data_id</span>、權重與邏輯斯諦函數參數。
 </footer>
 </div>
 </body>
