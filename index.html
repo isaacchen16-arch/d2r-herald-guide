@@ -53,6 +53,9 @@
   .pass{background:#332325;border-color:#87464c;color:#f0c0c5}
   .low{color:#cdbb99}
   .key{color:#f4d583;font-weight:700}
+  .grouprow td{background:#252117!important;color:#efd798;font-weight:800;border-top:2px solid #554522}
+  .extra td{background:#211c20!important;color:#d5c0d8;font-weight:700}
+  .subtle{color:#aaa49a;font-size:.88rem}
   .mono{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;color:#e2c999}
   .route{padding:13px 15px;border-left:4px solid var(--gold);background:#1b1812;border-radius:8px;margin:12px 0}
   .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -128,126 +131,224 @@
 
 <section id="a1">
   <h2>四、Act 1 全地圖策略</h2>
+  <p class="subtle">排序依 Blizzard《Reign of the Warlock》3.3 公布的 Terror Zone Rotation Groups；官方輪替未列出但在「全 Act Terrorized」與 Herald 資料中存在的 Level，以「Shard 全章補圖」標示。策略評級不再改變官方順序。</p>
   <table>
-    <thead><tr><th>地圖／Herald zone</th><th>zone_data_id / Weight</th><th>策略</th><th>評級</th></tr></thead>
+    <thead><tr><th>官方 3.3 組別／地圖</th><th>Herald zone / Weight</th><th>策略</th><th>評級</th></tr></thead>
     <tbody>
-      <tr><td>Moo Moo Farm</td><td>獨立 / 1</td><td>T5 深清；不要拿來付 T1～T4。</td><td><span class="chip s">S</span></td></tr>
-      <tr><td>Blood Moor</td><td>獨立 / 1</td><td>正常清。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Den of Evil</td><td>獨立 / 1</td><td>低價值，升階可犧牲。</td><td><span class="chip c">C</span></td></tr>
-      <tr><td>Cold Plains</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Cave Lv1 → Cave Lv2</td><td>共用 X / 3 : 1</td><td>Lv1 為主，Lv2 接續。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Burial Grounds → Crypt → Mausoleum</td><td>共用 X / 1 : 1 : 1</td><td>三區視為一個 zone。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Stony Field → Tristram</td><td>共用 X / 3 : 1</td><td>Stony 優先，再補 Tristram。</td><td><span class="chip a">A-</span></td></tr>
-      <tr><td>Dark Wood</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Underground Passage Lv1 → Lv2</td><td>共用 X / 3 : 1</td><td>Lv1 為主。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Black Marsh</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Hole Lv1 → Lv2</td><td>共用 X / 3 : 1</td><td>兩層一路清。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Tower Cellar Lv1 → 5</td><td>共用 X / 2 : 2 : 2 : 2 : 1</td><td>一路到底；Countess 不等於 Herald 進度本身。</td><td><span class="chip a">A-</span></td></tr>
-      <tr><td>Forgotten Tower 入口層</td><td>無 Herald completion 欄位</td><td>路過。</td><td><span class="chip pass">路過</span></td></tr>
-      <tr><td>Tamoe Highland → Monastery Gate → Outer Cloister</td><td>共用 X / 2 : 1 : 1</td><td>Tamoe 優先，後兩區接續。</td><td><span class="chip a">A-</span></td></tr>
-      <tr><td>Pit Lv1 → Lv2</td><td>共用 X / 3 : 1</td><td>T5 高效率，兩層順刷。</td><td><span class="chip a">A</span></td></tr>
-      <tr><td>Barracks</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Jail Lv1 → 2 → 3</td><td>共用 X / 1 : 1 : 1</td><td>三層必須視為一張大圖。</td><td><span class="chip a">A-</span></td></tr>
-      <tr><td>Inner Cloister → Cathedral → Cata 1 → 2 → 3 → 4</td><td>共用 X / 0.5 : 1 : 2 : 2 : 2 : 1</td><td>T5 深清。只從 Cata2 WP 往下刷只取得約 59% 權重。</td><td><span class="chip s">S-</span></td></tr>
+      <tr class="extra"><td colspan="4">Shard 全章補圖｜不在目前排程輪替清單</td></tr>
+      <tr><td>Blood Moor</td><td><span class="mono">Act1-BloodMoor</span> / 1</td><td>獨立 X；低階可用。</td><td><span class="chip b">B-</span></td></tr>
+      <tr><td>Den of Evil</td><td><span class="mono">Act1-BloodMoor-Cave</span> / 1</td><td>獨立 X；升階犧牲區。</td><td><span class="chip c">C</span></td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #1｜Cold Plains and The Cave</td></tr>
+      <tr><td>Cold Plains</td><td><span class="mono">Act1-ColdPlains</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Cave Level 1</td><td rowspan="2"><span class="mono">Act1-ColdPlains-Cave</span><br>3 : 1，共用 X</td><td>主權重層。</td><td rowspan="2"><span class="chip b">B</span></td></tr>
+      <tr><td>Cave Level 2</td><td>接續補完。</td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #2｜Burial Grounds, The Crypt, and the Mausoleum</td></tr>
+      <tr><td>Burial Grounds</td><td rowspan="3"><span class="mono">Act1-BurialGrounds</span><br>1 : 1 : 1，共用 X</td><td rowspan="3">三區視為同一 Herald zone。</td><td rowspan="3"><span class="chip b">B</span></td></tr>
+      <tr><td>Crypt</td></tr><tr><td>Mausoleum</td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #3｜Stony Field / Tristram</td></tr>
+      <tr><td>Stony Field</td><td rowspan="2"><span class="mono">Act1-Tristram</span><br>3 : 1，共用 X</td><td>主權重區。</td><td rowspan="2"><span class="chip a">A-</span></td></tr>
+      <tr><td>Tristram</td><td>接續補完。</td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #4｜Dark Wood / Underground Passage</td></tr>
+      <tr><td>Dark Wood</td><td><span class="mono">Act1-DarkWood</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Underground Passage Level 1</td><td rowspan="2"><span class="mono">Act1-DarkWood-Cave</span><br>3 : 1，共用 X</td><td>主權重層。</td><td rowspan="2"><span class="chip b">B</span></td></tr>
+      <tr><td>Underground Passage Level 2</td><td>接續補完。</td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #5｜Black Marsh / The Hole / The Forgotten Tower</td></tr>
+      <tr><td>Black Marsh</td><td><span class="mono">Act1-Tower-Wilderness</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Hole Level 1</td><td rowspan="2"><span class="mono">Act1-Tower-Cave</span><br>3 : 1，共用 X</td><td>主權重層。</td><td rowspan="2"><span class="chip b">B</span></td></tr>
+      <tr><td>Hole Level 2</td><td>接續補完。</td></tr>
+      <tr><td>Forgotten Tower（入口 Level）</td><td>無 Herald completion 欄位</td><td>通行層，本身不累積 X。</td><td><span class="chip pass">路過</span></td></tr>
+      <tr><td>Tower Cellar Level 1</td><td rowspan="5"><span class="mono">Act1-Tower</span><br>2 : 2 : 2 : 2 : 1，共用 X</td><td rowspan="5">五層一路到底。</td><td rowspan="5"><span class="chip a">A-</span></td></tr>
+      <tr><td>Tower Cellar Level 2</td></tr><tr><td>Tower Cellar Level 3</td></tr><tr><td>Tower Cellar Level 4</td></tr><tr><td>Tower Cellar Level 5</td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #6｜Jail / Barracks</td></tr>
+      <tr><td>Jail Level 1</td><td rowspan="3"><span class="mono">Act1-Jail</span><br>1 : 1 : 1，共用 X</td><td rowspan="3">三層視為一張大圖。</td><td rowspan="3"><span class="chip a">A-</span></td></tr>
+      <tr><td>Jail Level 2</td></tr><tr><td>Jail Level 3</td></tr>
+      <tr><td>Barracks</td><td><span class="mono">Act1-Barracks</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #7｜The Pit / Tamoe Highland / Outer Cloister</td></tr>
+      <tr><td>Pit Level 1</td><td rowspan="2"><span class="mono">Act1-Monastery-Cave</span><br>3 : 1，共用 X</td><td>主權重層。</td><td rowspan="2"><span class="chip a">A</span></td></tr>
+      <tr><td>Pit Level 2</td><td>接續補完。</td></tr>
+      <tr><td>Tamoe Highland</td><td rowspan="3"><span class="mono">Act1-Monastery-Wilderness</span><br>2 : 1 : 1，共用 X</td><td>主權重區。</td><td rowspan="3"><span class="chip a">A-</span></td></tr>
+      <tr><td>Monastery Gate <span class="subtle">（官方組名未列，但同 Herald zone）</span></td><td>Shard 全章時一併計入。</td></tr>
+      <tr><td>Outer Cloister</td><td>接續補完。</td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #8｜Inner Cloister / Cathedral and Catacombs</td></tr>
+      <tr><td>Inner Cloister</td><td rowspan="6"><span class="mono">Act1-Catacombs</span><br>0.5 : 1 : 2 : 2 : 2 : 1，共用 X</td><td rowspan="6">T5 高價值整組；只從 Cata 2 WP 往下會漏掉大量 completion 權重。</td><td rowspan="6"><span class="chip s">S-</span></td></tr>
+      <tr><td>Cathedral</td></tr><tr><td>Catacombs Level 1</td></tr><tr><td>Catacombs Level 2</td></tr><tr><td>Catacombs Level 3</td></tr><tr><td>Catacombs Level 4</td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #9｜Moo Moo Farm</td></tr>
+      <tr><td>Moo Moo Farm</td><td><span class="mono">Act1-MooMooFarm</span> / 1</td><td>T5 核心資產，深清。</td><td><span class="chip s">S</span></td></tr>
     </tbody>
   </table>
-  <div class="route"><b>A1 建議順序：</b> Cow → Cathedral/Catacombs 整組 → Pit/Tamoe → Tower → Burial/Crypt/Maus → Jail → Stony/Tristram → Cold/Cave → Dark/UP → Black Marsh/Hole → Blood Moor/Den → Barracks</div>
+  <div class="route"><b>注意：</b>本表現在以 Blizzard 3.3 官方 rotation group 順序排列；策略路線請看第九節，不再用策略優先度打亂五章地圖表。</div>
 </section>
 
 <section id="a2">
   <h2>五、Act 2 全地圖策略</h2>
+  <p class="subtle">依 Blizzard 3.3 官方 rotation group #1→#7 排列；每組內展開所有實際 Level。Maggot Lair 三層特別注意：三層是三個獨立 Herald X。</p>
   <table>
-    <thead><tr><th>地圖／Herald zone</th><th>zone_data_id / Weight</th><th>策略</th><th>評級</th></tr></thead>
+    <thead><tr><th>官方 3.3 組別／地圖</th><th>Herald zone / Weight</th><th>策略</th><th>評級</th></tr></thead>
     <tbody>
-      <tr><td>Arcane Sanctuary</td><td>獨立 / 1</td><td>T5 深清。</td><td><span class="chip s">S</span></td></tr>
-      <tr><td>Canyon of the Magi</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Tal Rasha's Tomb #1～#7</td><td><b>七座全部獨立 X</b> / 各 1</td><td>七張獨立高品質彩票；T5 高優先。</td><td><span class="chip s">S</span></td></tr>
-      <tr><td>Duriel's Lair</td><td>無 Herald completion 欄位</td><td>Boss／掉落用途。</td><td><span class="chip pass">路過</span></td></tr>
-      <tr><td>Sewers Lv1 → 2 → 3</td><td>共用 X / 1 : 1 : 1</td><td>三層完整刷。</td><td><span class="chip a">A-</span></td></tr>
-      <tr><td>Rocky Waste</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Stony Tomb Lv1 → 2</td><td>共用 X / 1 : 1</td><td>低～中價值；升階可用。</td><td><span class="chip c">C+</span></td></tr>
-      <tr><td>Dry Hills</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Halls of the Dead Lv1 → 2 → 3</td><td>共用 X / 1 : 1 : 1</td><td>T5 深清。</td><td><span class="chip a">A</span></td></tr>
-      <tr><td>Far Oasis</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Maggot Lair Lv1</td><td><b>獨立 X</b> / 1</td><td>每層都可單獨當一張彩票。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Maggot Lair Lv2</td><td><b>獨立 X</b> / 1</td><td>同上。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Maggot Lair Lv3</td><td><b>獨立 X</b> / 1</td><td>同上。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Lost City</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Ancient Tunnels</td><td>獨立 / 1</td><td>正常偏優。</td><td><span class="chip a">A-</span></td></tr>
-      <tr><td>Valley of Snakes</td><td>無 Herald completion 欄位</td><td>路過。</td><td><span class="chip pass">路過</span></td></tr>
-      <tr><td>Claw Viper Temple Lv1 → 2</td><td>共用 X / 3 : 1</td><td>Lv1 為主。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Harem Lv1</td><td>無 Herald completion 欄位</td><td>路過。</td><td><span class="chip pass">路過</span></td></tr>
-      <tr><td>Harem Lv2</td><td>獨立 / 1</td><td>低～正常。</td><td><span class="chip c">C+</span></td></tr>
-      <tr><td>Palace Cellar Lv1 → 2 → 3</td><td>共用 X / 1 : 1 : 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr class="grouprow"><td colspan="4">官方 #1｜Sewers</td></tr>
+      <tr><td>Sewers Level 1</td><td rowspan="3"><span class="mono">Act2-Sewers</span><br>1 : 1 : 1，共用 X</td><td rowspan="3">三層完整刷。</td><td rowspan="3"><span class="chip a">A-</span></td></tr>
+      <tr><td>Sewers Level 2</td></tr><tr><td>Sewers Level 3</td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #2｜Rocky Waste and Stony Tomb</td></tr>
+      <tr><td>Rocky Waste</td><td><span class="mono">Act2-RockyWaste</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Stony Tomb Level 1</td><td rowspan="2"><span class="mono">Act2-RockyWaste-Tomb</span><br>1 : 1，共用 X</td><td rowspan="2">低～中價值；升階可用。</td><td rowspan="2"><span class="chip c">C+</span></td></tr>
+      <tr><td>Stony Tomb Level 2</td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #3｜Dry Hills and Halls of the Dead</td></tr>
+      <tr><td>Dry Hills</td><td><span class="mono">Act2-DryHills</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Halls of the Dead Level 1</td><td rowspan="3"><span class="mono">Act2-DryHills-Tomb</span><br>1 : 1 : 1，共用 X</td><td rowspan="3">T5 高價值整組。</td><td rowspan="3"><span class="chip a">A</span></td></tr>
+      <tr><td>Halls of the Dead Level 2</td></tr><tr><td>Halls of the Dead Level 3</td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #4｜Far Oasis and The Maggot Lair</td></tr>
+      <tr><td>Far Oasis</td><td><span class="mono">Act2-FarOasis</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Maggot Lair Level 1</td><td><span class="mono">Act2-FarOasis-LairA</span> / 1</td><td>獨立 X；一層就是一張新彩票。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Maggot Lair Level 2</td><td><span class="mono">Act2-FarOasis-LairB</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Maggot Lair Level 3</td><td><span class="mono">Act2-FarOasis-LairC</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #5｜Lost City, Valley of Snakes, Claw Viper Temple, Ancient Tunnels</td></tr>
+      <tr><td>Lost City</td><td><span class="mono">Act2-LostCity</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Valley of Snakes</td><td>無 Herald completion 欄位</td><td>官方 TZ 組內，但不拿來累積 Herald X。</td><td><span class="chip pass">路過</span></td></tr>
+      <tr><td>Claw Viper Temple Level 1</td><td rowspan="2"><span class="mono">Act2-LostCity-Tomb</span><br>3 : 1，共用 X</td><td>主權重層。</td><td rowspan="2"><span class="chip b">B</span></td></tr>
+      <tr><td>Claw Viper Temple Level 2</td><td>接續補完。</td></tr>
+      <tr><td>Ancient Tunnels</td><td><span class="mono">Act2-LostCity-Sewer</span> / 1</td><td>獨立 X。</td><td><span class="chip a">A-</span></td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #6｜Harem, Palace and Arcane Sanctuary</td></tr>
+      <tr><td>Harem Level 1</td><td>無 Herald completion 欄位</td><td>通行層。</td><td><span class="chip pass">路過</span></td></tr>
+      <tr><td>Harem Level 2</td><td><span class="mono">Act2-ArcaneSanctuary-Harem</span> / 1</td><td>獨立 X。</td><td><span class="chip c">C+</span></td></tr>
+      <tr><td>Palace Cellar Level 1</td><td rowspan="3"><span class="mono">Act2-ArcaneSanctuary-Basement</span><br>1 : 1 : 1，共用 X</td><td rowspan="3">三層完整刷。</td><td rowspan="3"><span class="chip b">B</span></td></tr>
+      <tr><td>Palace Cellar Level 2</td></tr><tr><td>Palace Cellar Level 3</td></tr>
+      <tr><td>Arcane Sanctuary</td><td><span class="mono">Act2-ArcaneSanctuary</span> / 1</td><td>T5 核心資產。</td><td><span class="chip s">S</span></td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #7｜Canyon of the Magi and Tal Rasha's Tombs</td></tr>
+      <tr><td>Canyon of the Magi</td><td><span class="mono">Act2-TalRashas</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Tal Rasha's Tomb #1</td><td><span class="mono">Act2-TalRashas-Tomb1</span> / 1</td><td rowspan="7">七座 Tomb 各自獨立 X；T5 高價值。</td><td rowspan="7"><span class="chip s">S</span></td></tr>
+      <tr><td>Tal Rasha's Tomb #2</td><td><span class="mono">Act2-TalRashas-Tomb2</span> / 1</td></tr>
+      <tr><td>Tal Rasha's Tomb #3</td><td><span class="mono">Act2-TalRashas-Tomb3</span> / 1</td></tr>
+      <tr><td>Tal Rasha's Tomb #4</td><td><span class="mono">Act2-TalRashas-Tomb4</span> / 1</td></tr>
+      <tr><td>Tal Rasha's Tomb #5</td><td><span class="mono">Act2-TalRashas-Tomb5</span> / 1</td></tr>
+      <tr><td>Tal Rasha's Tomb #6</td><td><span class="mono">Act2-TalRashas-Tomb6</span> / 1</td></tr>
+      <tr><td>Tal Rasha's Tomb #7</td><td><span class="mono">Act2-TalRashas-Tomb7</span> / 1</td></tr>
+      <tr class="extra"><td>Duriel's Lair <span class="subtle">（Shard 全章補圖／Boss room）</span></td><td>無 Herald completion 欄位</td><td>Boss／掉落用途。</td><td><span class="chip pass">路過</span></td></tr>
     </tbody>
   </table>
-  <div class="route"><b>A2 建議順序：</b> Arcane → 七座 Tomb → Canyon → Halls of Dead → Sewers → Maggot 1 → 2 → 3 → Lost City/Ancient Tunnels → Claw Viper → Stony Tomb → Rocky Waste → Dry Hills → Far Oasis → Palace/Harem</div>
 </section>
 
 <section id="a3">
   <h2>六、Act 3 全地圖策略</h2>
+  <p class="subtle">依 Blizzard 3.3 官方 rotation group #1→#6 排列。Kurast Causeway 與 Kurast Sewers 雖未列在目前 rotation group 名稱中，但現行 Herald 資料仍有 completion zone，故以 Shard 全章補圖列入。</p>
   <table>
-    <thead><tr><th>地圖／Herald zone</th><th>zone_data_id / Weight</th><th>策略</th><th>評級</th></tr></thead>
+    <thead><tr><th>官方 3.3 組別／地圖</th><th>Herald zone / Weight</th><th>策略</th><th>評級</th></tr></thead>
     <tbody>
-      <tr><td>Flayer Jungle</td><td>獨立 / 1</td><td>T5 深清；高怪量、高密度。</td><td><span class="chip s">S</span></td></tr>
-      <tr><td>Durance of Hate Lv1 → 2 → 3</td><td>共用 X / 2 : 3 : 1</td><td>完整清；Lv2 權重最高。</td><td><span class="chip s">S-</span></td></tr>
-      <tr><td>Spider Forest</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Arachnid Lair</td><td>獨立 / 1</td><td>低價值；升階可犧牲。</td><td><span class="chip c">C</span></td></tr>
-      <tr><td>Spider Cavern</td><td>獨立 / 1</td><td>已知 T5 價值偏低，適合作為升階起手。</td><td><span class="chip c">C</span></td></tr>
-      <tr><td>Great Marsh</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Swampy Pit Lv1 → 2 → 3</td><td>共用 X / 1 : 1 : 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Flayer Dungeon Lv1 → 2 → 3</td><td>共用 X / 2 : 2 : 1</td><td>前兩層權重較高。</td><td><span class="chip a">A-</span></td></tr>
-      <tr><td>Lower Kurast</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Kurast Bazaar</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Upper Kurast → Kurast Causeway</td><td>共用 X / <b>9 : 1</b></td><td>Upper Kurast 清完≈90%權重；Causeway 只補尾巴。</td><td><span class="chip a">A</span></td></tr>
-      <tr><td>六座 Kurast 神殿</td><td>共用 X / 全部 1</td><td>Ruined Temple、Disused Fane、Forgotten Reliquary、Forgotten Temple、Ruined Fane、Disused Reliquary 視為一張大 zone。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Sewers Lv1 → 2</td><td>共用 X / 4 : 1</td><td>Lv1 優先。</td><td><span class="chip a">A</span></td></tr>
-      <tr><td>Travincal</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr class="grouprow"><td colspan="4">官方 #1｜Spider Forest and Spider Cavern / Arachnid Lair</td></tr>
+      <tr><td>Spider Forest</td><td><span class="mono">Act3-SpiderForest</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Spider Cavern</td><td><span class="mono">Act3-SpiderForest-Cave2</span> / 1</td><td>低 T5 邊際價值；升階起手候選。</td><td><span class="chip c">C</span></td></tr>
+      <tr><td>Arachnid Lair</td><td><span class="mono">Act3-SpiderForest-Cave1</span> / 1</td><td>獨立 X；升階候選。</td><td><span class="chip c">C</span></td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #2｜Great Marsh</td></tr>
+      <tr><td>Great Marsh</td><td><span class="mono">Act3-GreatMarsh</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #3｜Flayer Jungle and Flayer Dungeon / Swampy Pit</td></tr>
+      <tr><td>Flayer Jungle</td><td><span class="mono">Act3-FlayerJungle</span> / 1</td><td>T5 核心資產，深清。</td><td><span class="chip s">S</span></td></tr>
+      <tr><td>Flayer Dungeon Level 1</td><td rowspan="3"><span class="mono">Act3-FlayerJungle-Dungeon2</span><br>2 : 2 : 1，共用 X</td><td rowspan="3">前兩層權重較高。</td><td rowspan="3"><span class="chip a">A-</span></td></tr>
+      <tr><td>Flayer Dungeon Level 2</td></tr><tr><td>Flayer Dungeon Level 3</td></tr>
+      <tr><td>Swampy Pit Level 1</td><td rowspan="3"><span class="mono">Act3-FlayerJungle-Dungeon1</span><br>1 : 1 : 1，共用 X</td><td rowspan="3">三層完整刷。</td><td rowspan="3"><span class="chip b">B</span></td></tr>
+      <tr><td>Swampy Pit Level 2</td></tr><tr><td>Swampy Pit Level 3</td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #4｜Kurast Bazaar, Ruined Temple, Disused Fane, Lower Kurast, Upper Kurast, Forgotten Temple, Forgotten Reliquary, Disused Reliquary, Ruined Fane</td></tr>
+      <tr><td>Kurast Bazaar</td><td><span class="mono">Act3-Kurast2</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Ruined Temple</td><td rowspan="2"><span class="mono">Act3-KurastTemple</span> / 各 1（六座神殿共用 X）</td><td rowspan="2">與後面四座神殿同一 X。</td><td rowspan="2"><span class="chip b">B</span></td></tr>
+      <tr><td>Disused Fane</td></tr>
+      <tr><td>Lower Kurast</td><td><span class="mono">Act3-Kurast1</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Upper Kurast</td><td rowspan="2"><span class="mono">Act3-Kurast3</span><br>9 : 1，共用 X</td><td>主權重區，約佔此 zone 90% 權重。</td><td rowspan="2"><span class="chip a">A</span></td></tr>
+      <tr class="extra"><td>Kurast Causeway <span class="subtle">（官方組名未列，但同 Herald zone）</span></td><td>補尾巴。</td></tr>
+      <tr><td>Forgotten Temple</td><td rowspan="4"><span class="mono">Act3-KurastTemple</span> / 各 1（承上，共用 X）</td><td rowspan="4">六座神殿要視為一張大 Herald zone。</td><td rowspan="4"><span class="chip b">B</span></td></tr>
+      <tr><td>Forgotten Reliquary</td></tr><tr><td>Disused Reliquary</td></tr><tr><td>Ruined Fane</td></tr>
+      <tr class="extra"><td>Kurast Sewers Level 1 <span class="subtle">（Shard 全章補圖）</span></td><td rowspan="2"><span class="mono">Act3-KurastSewer</span><br>4 : 1，共用 X</td><td>Lv1 主權重。</td><td rowspan="2"><span class="chip a">A</span></td></tr>
+      <tr class="extra"><td>Kurast Sewers Level 2 <span class="subtle">（Shard 全章補圖）</span></td><td>接續補完。</td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #5｜Travincal</td></tr>
+      <tr><td>Travincal</td><td><span class="mono">Act3-Travincal</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #6｜Durance of Hate</td></tr>
+      <tr><td>Durance of Hate Level 1</td><td rowspan="3"><span class="mono">Act3-DuranceOfHate</span><br>2 : 3 : 1，共用 X</td><td rowspan="3">T5 高價值整組；Lv2 權重最高。</td><td rowspan="3"><span class="chip s">S-</span></td></tr>
+      <tr><td>Durance of Hate Level 2</td></tr><tr><td>Durance of Hate Level 3</td></tr>
     </tbody>
   </table>
-  <div class="route"><b>A3 建議順序：</b> Flayer Jungle → Durance 1–3 → Upper Kurast → Sewers 1 → Flayer Dungeon → Swampy Pit → Great Marsh → Lower Kurast → Bazaar → 六座神殿 → Travincal → Spider Forest → Arachnid → Spider Cavern</div>
 </section>
 
 <section id="a4">
   <h2>七、Act 4 全地圖策略</h2>
+  <p class="subtle">Act 4 依 Blizzard 3.3 官方列出的三個 rotation groups 原順序排列；注意官方 #2 的文字順序是 River of Flame / City of the Damned。</p>
   <table>
-    <thead><tr><th>地圖</th><th>X</th><th>策略</th><th>評級</th></tr></thead>
+    <thead><tr><th>官方 3.3 組別／地圖</th><th>Herald zone / Weight</th><th>策略</th><th>評級</th></tr></thead>
     <tbody>
-      <tr><td>Outer Steppes</td><td>獨立 / 1</td><td>升階優先使用。</td><td><span class="chip c">C+</span></td></tr>
-      <tr><td>Plains of Despair</td><td>獨立 / 1</td><td>升階優先使用。</td><td><span class="chip c">C+</span></td></tr>
-      <tr><td>City of the Damned</td><td>獨立 / 1</td><td>升階候補。</td><td><span class="chip b">B-</span></td></tr>
-      <tr><td>River of Flame</td><td>獨立 / 1</td><td>升階候補；T5 也可順刷。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Chaos Sanctuary</td><td>獨立 / 1</td><td>T5 正常全清；不要只 Seal Rush。</td><td><span class="chip a">A</span></td></tr>
+      <tr class="grouprow"><td colspan="4">官方 #1｜Outer Steppes and Plains of Despair</td></tr>
+      <tr><td>Outer Steppes</td><td><span class="mono">Act4_OuterSteppes1</span> / 1</td><td>獨立 X；升階優先使用。</td><td><span class="chip c">C+</span></td></tr>
+      <tr><td>Plains of Despair</td><td><span class="mono">Act4_OuterSteppes2</span> / 1</td><td>獨立 X；升階優先使用。</td><td><span class="chip c">C+</span></td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #2｜River of Flame / City of the Damned</td></tr>
+      <tr><td>River of Flame</td><td><span class="mono">Act4-RiverOfFlame2</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>City of the Damned</td><td><span class="mono">Act4-RiverOfFlame1</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B-</span></td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #3｜Chaos Sanctuary</td></tr>
+      <tr><td>The Chaos Sanctuary</td><td><span class="mono">Act4-ChaosSanctuary</span> / 1</td><td>T5 正常全清；Herald farming 不採純 Seal Rush。</td><td><span class="chip a">A</span></td></tr>
     </tbody>
   </table>
-  <div class="route"><b>A4 建議：</b> T1～T4 優先 Outer → Plains → City → River；若四張正好各出一隻，Chaos 就以 T5 身分進場。</div>
 </section>
 
 <section id="a5">
   <h2>八、Act 5 全地圖策略</h2>
+  <p class="subtle">依 Blizzard 3.3 官方 rotation group #1→#8 排列；Arreat Summit 是全 Act Shard 下的實際 Level，但沒有 Herald completion 欄位，因此另列補圖。</p>
   <table>
-    <thead><tr><th>地圖／Herald zone</th><th>zone_data_id / Weight</th><th>策略</th><th>評級</th></tr></thead>
+    <thead><tr><th>官方 3.3 組別／地圖</th><th>Herald zone / Weight</th><th>策略</th><th>評級</th></tr></thead>
     <tbody>
-      <tr><td>Worldstone Keep Lv1 → 2 → 3 → Throne</td><td>共用 X / <b>2 : 2 : 2 : 1</b></td><td>全遊戲最高價值之一；T5 深清。不要只從 WSK2 WP 直飛 Throne。</td><td><span class="chip s">S+</span></td></tr>
-      <tr><td>Worldstone Chamber</td><td>無 Herald completion 欄位</td><td>Baal／劇情用。</td><td><span class="chip pass">路過</span></td></tr>
-      <tr><td>Bloody Foothills</td><td>獨立 / 1</td><td>T5 深清。</td><td><span class="chip s">S</span></td></tr>
-      <tr><td>Frigid Highlands</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Abaddon</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Arreat Plateau</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Pit of Acheron</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Crystalline Passage</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Frozen River</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Glacial Trail → Drifter Cavern</td><td>共用 X / 3 : 1</td><td>Trail 優先。</td><td><span class="chip a">A-</span></td></tr>
-      <tr><td>Frozen Tundra</td><td>獨立 / 1</td><td>T5 高優先。</td><td><span class="chip a">A</span></td></tr>
-      <tr><td>Infernal Pit</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Ancients' Way → Icy Cellar</td><td>共用 X / 3 : 1</td><td>Ancients' Way 優先。</td><td><span class="chip a">A-</span></td></tr>
-      <tr><td>Nihlathak's Temple → Halls of Anguish</td><td>共用 X / 1 : 3</td><td>T5 高優先，Anguish 權重高。</td><td><span class="chip s">S-</span></td></tr>
-      <tr><td>Halls of Pain</td><td>獨立 / 1</td><td>T5 高優先。</td><td><span class="chip a">A</span></td></tr>
-      <tr><td>Halls of Vaught</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
-      <tr><td>Ancients' Summit</td><td>無 Herald completion 欄位</td><td>不作 Herald farming。</td><td><span class="chip pass">路過</span></td></tr>
+      <tr class="grouprow"><td colspan="4">官方 #1｜Bloody Foothills / Frigid Highlands / Abaddon</td></tr>
+      <tr><td>Bloody Foothills</td><td><span class="mono">Act5-BloodyFoothils1</span> / 1</td><td>T5 核心資產，深清。</td><td><span class="chip s">S</span></td></tr>
+      <tr><td>Frigid Highlands</td><td><span class="mono">Act5-BloodyFoothils2</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Abaddon</td><td><span class="mono">Act5-BloodyFoothils3</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #2｜Glacial Trail / Drifter Cavern</td></tr>
+      <tr><td>Glacial Trail</td><td rowspan="2"><span class="mono">Act5-GlacialTrail</span><br>3 : 1，共用 X</td><td>主權重區。</td><td rowspan="2"><span class="chip a">A-</span></td></tr>
+      <tr><td>Drifter Cavern</td><td>接續補完。</td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #3｜Crystalline Passage and Frozen River</td></tr>
+      <tr><td>Crystalline Passage</td><td><span class="mono">Act5-CrystallinePassage1</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Frozen River</td><td><span class="mono">Act5-CrystallinePassage2</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #4｜Frozen Tundra + Infernal Pit</td></tr>
+      <tr><td>Frozen Tundra</td><td><span class="mono">Act5-FrozenTundra1</span> / 1</td><td>T5 高優先。</td><td><span class="chip a">A</span></td></tr>
+      <tr><td>Infernal Pit</td><td><span class="mono">Act5-FrozenTundra2</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #5｜Arreat Plateau / Pit of Acheron</td></tr>
+      <tr><td>Arreat Plateau</td><td><span class="mono">Act5-ArreatPlateau1</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Pit of Acheron</td><td><span class="mono">Act5-ArreatPlateau2</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #6｜Nihlathak's Temple, Halls of Anguish, Halls of Pain, Halls of Vaught</td></tr>
+      <tr><td>Nihlathak's Temple</td><td rowspan="2"><span class="mono">Act5-Halls1</span><br>1 : 3，共用 X</td><td>與 Anguish 共用；Anguish 權重高。</td><td rowspan="2"><span class="chip s">S-</span></td></tr>
+      <tr><td>Halls of Anguish</td><td>主權重層。</td></tr>
+      <tr><td>Halls of Pain</td><td><span class="mono">Act5-Halls2</span> / 1</td><td>獨立 X；T5 高優先。</td><td><span class="chip a">A</span></td></tr>
+      <tr><td>Halls of Vaught</td><td><span class="mono">Act5-Halls3</span> / 1</td><td>獨立 X。</td><td><span class="chip b">B</span></td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #7｜Ancient's Way and Icy Cellar</td></tr>
+      <tr><td>The Ancients' Way</td><td rowspan="2"><span class="mono">Act5-AncientsWay</span><br>3 : 1，共用 X</td><td>主權重區。</td><td rowspan="2"><span class="chip a">A-</span></td></tr>
+      <tr><td>Icy Cellar</td><td>接續補完。</td></tr>
+      <tr class="extra"><td>Arreat Summit <span class="subtle">（Shard 全章補圖）</span></td><td>無 Herald completion 欄位</td><td>任務／Ancients 用，不作 Herald farming。</td><td><span class="chip pass">路過</span></td></tr>
+
+      <tr class="grouprow"><td colspan="4">官方 #8｜Worldstone Keep, Throne of Destruction, Worldstone Chamber</td></tr>
+      <tr><td>The Worldstone Keep Level 1</td><td rowspan="4"><span class="mono">Act5-WorldstoneKeep</span><br>2 : 2 : 2 : 1，共用 X</td><td rowspan="4">T5 頂級 Herald zone；WSK1→2→3→Throne 深清。</td><td rowspan="4"><span class="chip s">S+</span></td></tr>
+      <tr><td>The Worldstone Keep Level 2</td></tr><tr><td>The Worldstone Keep Level 3</td></tr><tr><td>Throne of Destruction</td></tr>
+      <tr><td>The Worldstone Chamber</td><td>無 Herald completion 欄位</td><td>官方 TZ 組內 Boss room，但不拿來累積 X。</td><td><span class="chip pass">路過</span></td></tr>
     </tbody>
   </table>
-  <div class="route"><b>A5 建議順序：</b> WSK1–3/Throne → Bloody Foothills → Nihlathak Temple/Anguish → Halls of Pain → Frozen Tundra → Ancients' Way/Icy Cellar → Glacial Trail/Drifter → Crystalline → Frozen River → Frigid Highlands/Abaddon → Arreat Plateau/Pit → Infernal Pit → Vaught</div>
 </section>
 
 <section id="master">
