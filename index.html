@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>D2R 3.3 Herald 全地圖刷法總策略</title>
+<style>
+  :root{
+    --bg:#0d0d0f;
+    --panel:#16171b;
+    --panel2:#1d1f24;
+    --text:#ece7dc;
+    --muted:#aaa49a;
+    --line:#35363d;
+    --gold:#d8b15f;
+    --red:#b8493d;
+    --green:#68a678;
+    --blue:#6f93bf;
+    --orange:#cf8a46;
+    --purple:#9c78c5;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:radial-gradient(circle at top,#1a1714 0,#0d0d0f 42rem);color:var(--text);font-family:"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.65}
+  a{color:var(--gold);text-decoration:none}
+  .wrap{max-width:1320px;margin:auto;padding:24px}
+  header{padding:28px 0 14px;border-bottom:1px solid var(--line)}
+  h1{font-size:clamp(28px,4vw,46px);margin:0 0 8px;color:#f3dfad;letter-spacing:.03em}
+  h2{margin-top:38px;color:#ead39b;border-left:5px solid var(--gold);padding-left:12px}
+  h3{color:#e6c985;margin-top:28px}
+  p{margin:.7em 0}
+  .subtitle{color:var(--muted);font-size:1.05rem}
+  .notice{margin:18px 0;padding:14px 16px;border:1px solid #6a5124;background:#241d11;border-radius:10px;color:#e8d8b1}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0}
+  .card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:0 10px 26px #0005}
+  .card strong{color:#f2d99d}
+  .flow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:15px 0}
+  .step{padding:9px 12px;border-radius:999px;background:#22252b;border:1px solid #41434a}
+  .arrow{color:var(--gold);font-weight:800}
+  nav{position:sticky;top:0;z-index:10;background:#0d0d0fe8;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav .navinner{max-width:1320px;margin:auto;padding:10px 24px;display:flex;gap:10px;overflow:auto;white-space:nowrap}
+  nav a{padding:7px 10px;border-radius:8px;background:#1b1c20;border:1px solid #303138;font-size:.92rem}
+  nav a:hover{background:#272930}
+  table{width:100%;border-collapse:collapse;margin:14px 0 22px;background:#141519;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  th,td{padding:10px 11px;border-bottom:1px solid #303138;vertical-align:top}
+  th{background:#202229;color:#f0d79c;text-align:left;position:sticky;top:48px;z-index:2}
+  tr:hover td{background:#1b1d22}
+  .chip{display:inline-block;padding:3px 8px;border-radius:999px;font-size:.78rem;font-weight:700;border:1px solid transparent;white-space:nowrap}
+  .s{background:#40291b;border-color:#9d6434;color:#ffd7a6}
+  .a{background:#203424;border-color:#4f825b;color:#bfe5c8}
+  .b{background:#243243;border-color:#4f6f91;color:#c9ddf3}
+  .c{background:#30283b;border-color:#725b8a;color:#dbc8f1}
+  .pass{background:#332325;border-color:#87464c;color:#f0c0c5}
+  .low{color:#cdbb99}
+  .key{color:#f4d583;font-weight:700}
+  .mono{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;color:#e2c999}
+  .route{padding:13px 15px;border-left:4px solid var(--gold);background:#1b1812;border-radius:8px;margin:12px 0}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .legend{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px}
+  details{background:#15161a;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:12px 0}
+  summary{cursor:pointer;color:#efd798;font-weight:700}
+  footer{margin-top:40px;padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem}
+  @media(max-width:760px){
+    .wrap{padding:16px}.two{grid-template-columns:1fr}th{position:static}table{font-size:.92rem}.hide-mobile{display:none}
+  }
+  @media print{
+    body{background:#fff;color:#111}.wrap{max-width:none}.card,table,details{box-shadow:none;background:#fff;color:#111}nav{display:none}th{position:static;background:#eee;color:#111}a{color:#111}.chip{color:#111}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="navinner">
+    <a href="#core">總策略</a><a href="#ascend">T1–T4 升階</a><a href="#t5">T5 收割</a>
+    <a href="#a1">Act 1</a><a href="#a2">Act 2</a><a href="#a3">Act 3</a><a href="#a4">Act 4</a><a href="#a5">Act 5</a><a href="#master">全圖總路線</a>
+  </div>
+</nav>
+<div class="wrap">
+<header>
+  <h1>D2R 3.3 Herald 全地圖刷法總策略</h1>
+  <div class="subtitle">五個 Act Worldstone Shard 全開｜以 Herald 數量／時間最大化為目標</div>
+</header>
+
+<section id="core">
+  <h2>一、核心規則</h2>
+  <div class="grid">
+    <div class="card"><strong>T1～T4：升階期</strong><br>每個 <span class="mono">zone_data_id</span> 的任務只有一件事：生出一隻 Herald。<br><span class="key">一出生就換區。</span></div>
+    <div class="card"><strong>T5：收割期</strong><br>不再遵守「一隻就走」。改成榨取該 zone 的剩餘怪量與 Herald 產能。</div>
+    <div class="card"><strong>X 是區域局部值</strong><br>只有相同 <span class="mono">zone_data_id</span> 的地圖共享 X。不同 zone 彼此不累積。</div>
+    <div class="card"><strong>Herald Tier 是全局值</strong><br>同一場遊戲中，T1 → T2 → T3 → T4 → T5 持續往上，不因換 Act 而重置。</div>
+  </div>
+  <div class="notice"><b>一句話：</b>低階省圖，高階榨圖。T1～T4 用低機會成本 zone 付升階成本；進 T5 後再把 WSK、Cow、Tal Tombs、Flayer Jungle 等高價值區域完整榨乾。</div>
+</section>
+
+<section id="ascend">
+  <h2>二、T1～T4 升階期：統一演算法</h2>
+  <div class="flow">
+    <span class="step">選低／中價值 zone</span><span class="arrow">→</span>
+    <span class="step">一路殺，不先繞圖</span><span class="arrow">→</span>
+    <span class="step">沒 Herald 就繼續</span><span class="arrow">→</span>
+    <span class="step">Herald 出現</span><span class="arrow">→</span>
+    <span class="step">立刻換新的 zone_data_id</span>
+  </div>
+  <p>如果一個 zone 完整清光仍沒 Herald，代表這個 zone 的「骰判資源」已經耗盡；直接換下一個 zone，不需要另切換成所謂乾旱模式。真正要做的是按<strong>機會成本由低到高</strong>消耗 zone。</p>
+
+  <h3>建議升階起始路線</h3>
+  <div class="route"><b>Spider Cavern → Arachnid Lair → Outer Steppes → Plains of Despair → City of the Damned → River of Flame → Den of Evil → Stony Tomb</b><br><span class="low">只跑到 T5 為止；每出一隻就立刻跳下一個 zone。剩餘未用區域全部保留給 T5。</span></div>
+</section>
+
+<section id="t5">
+  <h2>三、T5 收割期：策略反轉</h2>
+  <p>一進 T5，開始優先刷 Herald/hour 最高的剩餘 zone。Herald 出現後，X 會歸零，但如果該 zone 還剩大量集中怪物，就重新累積 X，繼續追下一隻 T5。</p>
+  <div class="two">
+    <div class="card"><strong>繼續刷</strong><br>Herald 出得早、地圖仍剩約 50% 以上集中怪、後續路線順。</div>
+    <div class="card"><strong>換區</strong><br>只剩 20～30% 零散怪、需要回頭找、下一個完整高價值 zone 更快。</div>
+  </div>
+  <h3>T5 第一梯隊</h3>
+  <div class="route">WSK/Throne → Cow → Bloody Foothills → Flayer Jungle → Arcane Sanctuary → Nihlathak Temple/Halls of Anguish → Halls of Pain → Durance → 七座 Tal Rasha Tombs → Frozen Tundra → Cathedral/Catacombs → Halls of the Dead</div>
+</section>
+
+<div class="legend">
+  <span class="chip s">S：T5 高價值／深清</span>
+  <span class="chip a">A：高優先</span>
+  <span class="chip b">B：正常</span>
+  <span class="chip c">C：低優先／升階可犧牲</span>
+  <span class="chip pass">路過：不拿來累積 X</span>
+</div>
+
+<section id="a1">
+  <h2>四、Act 1 全地圖策略</h2>
+  <table>
+    <thead><tr><th>地圖／Herald zone</th><th>zone_data_id / Weight</th><th>策略</th><th>評級</th></tr></thead>
+    <tbody>
+      <tr><td>Moo Moo Farm</td><td>獨立 / 1</td><td>T5 深清；不要拿來付 T1～T4。</td><td><span class="chip s">S</span></td></tr>
+      <tr><td>Blood Moor</td><td>獨立 / 1</td><td>正常清。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Den of Evil</td><td>獨立 / 1</td><td>低價值，升階可犧牲。</td><td><span class="chip c">C</span></td></tr>
+      <tr><td>Cold Plains</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Cave Lv1 → Cave Lv2</td><td>共用 X / 3 : 1</td><td>Lv1 為主，Lv2 接續。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Burial Grounds → Crypt → Mausoleum</td><td>共用 X / 1 : 1 : 1</td><td>三區視為一個 zone。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Stony Field → Tristram</td><td>共用 X / 3 : 1</td><td>Stony 優先，再補 Tristram。</td><td><span class="chip a">A-</span></td></tr>
+      <tr><td>Dark Wood</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Underground Passage Lv1 → Lv2</td><td>共用 X / 3 : 1</td><td>Lv1 為主。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Black Marsh</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Hole Lv1 → Lv2</td><td>共用 X / 3 : 1</td><td>兩層一路清。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Tower Cellar Lv1 → 5</td><td>共用 X / 2 : 2 : 2 : 2 : 1</td><td>一路到底；Countess 不等於 Herald 進度本身。</td><td><span class="chip a">A-</span></td></tr>
+      <tr><td>Forgotten Tower 入口層</td><td>無 Herald completion 欄位</td><td>路過。</td><td><span class="chip pass">路過</span></td></tr>
+      <tr><td>Tamoe Highland → Monastery Gate → Outer Cloister</td><td>共用 X / 2 : 1 : 1</td><td>Tamoe 優先，後兩區接續。</td><td><span class="chip a">A-</span></td></tr>
+      <tr><td>Pit Lv1 → Lv2</td><td>共用 X / 3 : 1</td><td>T5 高效率，兩層順刷。</td><td><span class="chip a">A</span></td></tr>
+      <tr><td>Barracks</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Jail Lv1 → 2 → 3</td><td>共用 X / 1 : 1 : 1</td><td>三層必須視為一張大圖。</td><td><span class="chip a">A-</span></td></tr>
+      <tr><td>Inner Cloister → Cathedral → Cata 1 → 2 → 3 → 4</td><td>共用 X / 0.5 : 1 : 2 : 2 : 2 : 1</td><td>T5 深清。只從 Cata2 WP 往下刷只取得約 59% 權重。</td><td><span class="chip s">S-</span></td></tr>
+    </tbody>
+  </table>
+  <div class="route"><b>A1 建議順序：</b> Cow → Cathedral/Catacombs 整組 → Pit/Tamoe → Tower → Burial/Crypt/Maus → Jail → Stony/Tristram → Cold/Cave → Dark/UP → Black Marsh/Hole → Blood Moor/Den → Barracks</div>
+</section>
+
+<section id="a2">
+  <h2>五、Act 2 全地圖策略</h2>
+  <table>
+    <thead><tr><th>地圖／Herald zone</th><th>zone_data_id / Weight</th><th>策略</th><th>評級</th></tr></thead>
+    <tbody>
+      <tr><td>Arcane Sanctuary</td><td>獨立 / 1</td><td>T5 深清。</td><td><span class="chip s">S</span></td></tr>
+      <tr><td>Canyon of the Magi</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Tal Rasha's Tomb #1～#7</td><td><b>七座全部獨立 X</b> / 各 1</td><td>七張獨立高品質彩票；T5 高優先。</td><td><span class="chip s">S</span></td></tr>
+      <tr><td>Duriel's Lair</td><td>無 Herald completion 欄位</td><td>Boss／掉落用途。</td><td><span class="chip pass">路過</span></td></tr>
+      <tr><td>Sewers Lv1 → 2 → 3</td><td>共用 X / 1 : 1 : 1</td><td>三層完整刷。</td><td><span class="chip a">A-</span></td></tr>
+      <tr><td>Rocky Waste</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Stony Tomb Lv1 → 2</td><td>共用 X / 1 : 1</td><td>低～中價值；升階可用。</td><td><span class="chip c">C+</span></td></tr>
+      <tr><td>Dry Hills</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Halls of the Dead Lv1 → 2 → 3</td><td>共用 X / 1 : 1 : 1</td><td>T5 深清。</td><td><span class="chip a">A</span></td></tr>
+      <tr><td>Far Oasis</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Maggot Lair Lv1</td><td><b>獨立 X</b> / 1</td><td>每層都可單獨當一張彩票。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Maggot Lair Lv2</td><td><b>獨立 X</b> / 1</td><td>同上。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Maggot Lair Lv3</td><td><b>獨立 X</b> / 1</td><td>同上。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Lost City</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Ancient Tunnels</td><td>獨立 / 1</td><td>正常偏優。</td><td><span class="chip a">A-</span></td></tr>
+      <tr><td>Valley of Snakes</td><td>無 Herald completion 欄位</td><td>路過。</td><td><span class="chip pass">路過</span></td></tr>
+      <tr><td>Claw Viper Temple Lv1 → 2</td><td>共用 X / 3 : 1</td><td>Lv1 為主。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Harem Lv1</td><td>無 Herald completion 欄位</td><td>路過。</td><td><span class="chip pass">路過</span></td></tr>
+      <tr><td>Harem Lv2</td><td>獨立 / 1</td><td>低～正常。</td><td><span class="chip c">C+</span></td></tr>
+      <tr><td>Palace Cellar Lv1 → 2 → 3</td><td>共用 X / 1 : 1 : 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+    </tbody>
+  </table>
+  <div class="route"><b>A2 建議順序：</b> Arcane → 七座 Tomb → Canyon → Halls of Dead → Sewers → Maggot 1 → 2 → 3 → Lost City/Ancient Tunnels → Claw Viper → Stony Tomb → Rocky Waste → Dry Hills → Far Oasis → Palace/Harem</div>
+</section>
+
+<section id="a3">
+  <h2>六、Act 3 全地圖策略</h2>
+  <table>
+    <thead><tr><th>地圖／Herald zone</th><th>zone_data_id / Weight</th><th>策略</th><th>評級</th></tr></thead>
+    <tbody>
+      <tr><td>Flayer Jungle</td><td>獨立 / 1</td><td>T5 深清；高怪量、高密度。</td><td><span class="chip s">S</span></td></tr>
+      <tr><td>Durance of Hate Lv1 → 2 → 3</td><td>共用 X / 2 : 3 : 1</td><td>完整清；Lv2 權重最高。</td><td><span class="chip s">S-</span></td></tr>
+      <tr><td>Spider Forest</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Arachnid Lair</td><td>獨立 / 1</td><td>低價值；升階可犧牲。</td><td><span class="chip c">C</span></td></tr>
+      <tr><td>Spider Cavern</td><td>獨立 / 1</td><td>已知 T5 價值偏低，適合作為升階起手。</td><td><span class="chip c">C</span></td></tr>
+      <tr><td>Great Marsh</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Swampy Pit Lv1 → 2 → 3</td><td>共用 X / 1 : 1 : 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Flayer Dungeon Lv1 → 2 → 3</td><td>共用 X / 2 : 2 : 1</td><td>前兩層權重較高。</td><td><span class="chip a">A-</span></td></tr>
+      <tr><td>Lower Kurast</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Kurast Bazaar</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Upper Kurast → Kurast Causeway</td><td>共用 X / <b>9 : 1</b></td><td>Upper Kurast 清完≈90%權重；Causeway 只補尾巴。</td><td><span class="chip a">A</span></td></tr>
+      <tr><td>六座 Kurast 神殿</td><td>共用 X / 全部 1</td><td>Ruined Temple、Disused Fane、Forgotten Reliquary、Forgotten Temple、Ruined Fane、Disused Reliquary 視為一張大 zone。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Sewers Lv1 → 2</td><td>共用 X / 4 : 1</td><td>Lv1 優先。</td><td><span class="chip a">A</span></td></tr>
+      <tr><td>Travincal</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+    </tbody>
+  </table>
+  <div class="route"><b>A3 建議順序：</b> Flayer Jungle → Durance 1–3 → Upper Kurast → Sewers 1 → Flayer Dungeon → Swampy Pit → Great Marsh → Lower Kurast → Bazaar → 六座神殿 → Travincal → Spider Forest → Arachnid → Spider Cavern</div>
+</section>
+
+<section id="a4">
+  <h2>七、Act 4 全地圖策略</h2>
+  <table>
+    <thead><tr><th>地圖</th><th>X</th><th>策略</th><th>評級</th></tr></thead>
+    <tbody>
+      <tr><td>Outer Steppes</td><td>獨立 / 1</td><td>升階優先使用。</td><td><span class="chip c">C+</span></td></tr>
+      <tr><td>Plains of Despair</td><td>獨立 / 1</td><td>升階優先使用。</td><td><span class="chip c">C+</span></td></tr>
+      <tr><td>City of the Damned</td><td>獨立 / 1</td><td>升階候補。</td><td><span class="chip b">B-</span></td></tr>
+      <tr><td>River of Flame</td><td>獨立 / 1</td><td>升階候補；T5 也可順刷。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Chaos Sanctuary</td><td>獨立 / 1</td><td>T5 正常全清；不要只 Seal Rush。</td><td><span class="chip a">A</span></td></tr>
+    </tbody>
+  </table>
+  <div class="route"><b>A4 建議：</b> T1～T4 優先 Outer → Plains → City → River；若四張正好各出一隻，Chaos 就以 T5 身分進場。</div>
+</section>
+
+<section id="a5">
+  <h2>八、Act 5 全地圖策略</h2>
+  <table>
+    <thead><tr><th>地圖／Herald zone</th><th>zone_data_id / Weight</th><th>策略</th><th>評級</th></tr></thead>
+    <tbody>
+      <tr><td>Worldstone Keep Lv1 → 2 → 3 → Throne</td><td>共用 X / <b>2 : 2 : 2 : 1</b></td><td>全遊戲最高價值之一；T5 深清。不要只從 WSK2 WP 直飛 Throne。</td><td><span class="chip s">S+</span></td></tr>
+      <tr><td>Worldstone Chamber</td><td>無 Herald completion 欄位</td><td>Baal／劇情用。</td><td><span class="chip pass">路過</span></td></tr>
+      <tr><td>Bloody Foothills</td><td>獨立 / 1</td><td>T5 深清。</td><td><span class="chip s">S</span></td></tr>
+      <tr><td>Frigid Highlands</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Abaddon</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Arreat Plateau</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Pit of Acheron</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Crystalline Passage</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Frozen River</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Glacial Trail → Drifter Cavern</td><td>共用 X / 3 : 1</td><td>Trail 優先。</td><td><span class="chip a">A-</span></td></tr>
+      <tr><td>Frozen Tundra</td><td>獨立 / 1</td><td>T5 高優先。</td><td><span class="chip a">A</span></td></tr>
+      <tr><td>Infernal Pit</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Ancients' Way → Icy Cellar</td><td>共用 X / 3 : 1</td><td>Ancients' Way 優先。</td><td><span class="chip a">A-</span></td></tr>
+      <tr><td>Nihlathak's Temple → Halls of Anguish</td><td>共用 X / 1 : 3</td><td>T5 高優先，Anguish 權重高。</td><td><span class="chip s">S-</span></td></tr>
+      <tr><td>Halls of Pain</td><td>獨立 / 1</td><td>T5 高優先。</td><td><span class="chip a">A</span></td></tr>
+      <tr><td>Halls of Vaught</td><td>獨立 / 1</td><td>正常。</td><td><span class="chip b">B</span></td></tr>
+      <tr><td>Ancients' Summit</td><td>無 Herald completion 欄位</td><td>不作 Herald farming。</td><td><span class="chip pass">路過</span></td></tr>
+    </tbody>
+  </table>
+  <div class="route"><b>A5 建議順序：</b> WSK1–3/Throne → Bloody Foothills → Nihlathak Temple/Anguish → Halls of Pain → Frozen Tundra → Ancients' Way/Icy Cellar → Glacial Trail/Drifter → Crystalline → Frozen River → Frigid Highlands/Abaddon → Arreat Plateau/Pit → Infernal Pit → Vaught</div>
+</section>
+
+<section id="master">
+  <h2>九、五 Act 全開：整場總路線</h2>
+  <h3>Phase 1｜升階</h3>
+  <div class="route"><b>Spider Cavern → Arachnid Lair → Outer Steppes → Plains → City → River → Den → Stony Tomb</b><br>每出一隻就立刻換新的 <span class="mono">zone_data_id</span>；一到 T5 就停止消耗低階升級區。</div>
+
+  <h3>Phase 2｜T5 第一梯隊</h3>
+  <div class="route"><b>WSK/Throne → Cow → Bloody Foothills → Flayer Jungle → Arcane → Nihlathak Temple/Anguish → Halls of Pain → Durance → 七 Tal Tombs → Frozen Tundra → Cathedral/Catacombs → Halls of Dead</b></div>
+
+  <h3>Phase 3｜T5 第二梯隊</h3>
+  <div class="route">Pit/Tamoe → Tower → Jail → Flayer Dungeon → Kurast Sewer → Upper Kurast → Ancients' Way → Glacial Trail → Crystalline/Frozen River → A2 Sewers → Maggot 1/2/3 → Ancient Tunnels / Claw Viper</div>
+
+  <h3>Phase 4｜全圖掃尾</h3>
+  <div class="route">Blood Moor、Cold Plains、Burial Grounds、Dark Wood、Black Marsh、Rocky Waste、Dry Hills、Far Oasis、Spider Forest、Great Marsh、Lower Kurast、Kurast temples、Travincal、Frigid Highlands、Arreat Plateau、各小洞穴，以及 T1～T4 提早離開留下的殘區。</div>
+</section>
+
+<details>
+  <summary>補充：幾個最常犯的錯</summary>
+  <ul>
+    <li>把「換 Area」誤以為等於「換 X」：真正要看 <span class="mono">zone_data_id</span>。</li>
+    <li>低階 Herald 一出仍繼續刷同一 zone：X 已歸零，下一階通常不划算。</li>
+    <li>T5 Herald 一出就走：高價值大 zone 可能還能再生第二、第三隻。</li>
+    <li>先把整張地圖 Teleport 跑亮再回頭殺：會先 populate 更多房間，通常不利於快速把當前 completion 推高。</li>
+    <li>只殺 Elite：新版 Herald 進度核心是整體怪物死亡／zone completion，普通怪同樣重要。</li>
+  </ul>
+</details>
+
+<footer>
+  本頁為 D2R 3.3 Herald 刷圖策略整理版。分組與權重依現行 desecrated zone 資料結構與社群逆向結果整理；若 Blizzard 後續熱修 Herald / Terror Zone 配置，應重新核對 zone_data_id、weight 與 Logistic 參數。
+</footer>
+</div>
+</body>
+</html>
